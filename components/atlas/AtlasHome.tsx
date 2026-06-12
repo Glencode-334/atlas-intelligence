@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { HorizontalScroller } from "@/components/HorizontalScroller";
 import {
   Search, Bookmark, Bell, ChevronRight, ArrowUpRight, TrendingUp,
   Bot, Brain, Server, Code2, Film, Mic, HeartPulse, Cpu, ShieldCheck,
@@ -48,36 +49,30 @@ function MomentumBadge({ m }: { m: Momentum }) {
   );
 }
 
-let __sparkUid = 0;
-
 function Nav() {
-  const links = ["Startups", "Founders", "Investors", "Sectors", "Reports", "Jobs"];
+  const links = ["Startups", "Founders", "Investors", "Products", "Funding", "Jobs"];
   return (
-    <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-        <div className="flex items-center gap-10">
-          <Link href="/" className="flex items-center gap-2">
-            <span className="grid size-7 place-items-center rounded-full bg-primary text-primary-foreground">
-              <Sparkles className="size-3.5" />
-            </span>
-            <span className="text-[15px] font-semibold tracking-tight">Atlas Intelligence</span>
-          </Link>
-          <nav className="hidden items-center gap-7 text-sm text-muted-foreground md:flex">
-            {links.map((l) => (
-              <a key={l} href="#" className="transition-colors hover:text-foreground">{l}</a>
-            ))}
-          </nav>
-        </div>
+    <header className="sticky top-0 z-40 border-b border-border bg-background/80 backdrop-blur">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <a href="/" className="flex items-center gap-2">
+          <span className="grid h-7 w-7 place-items-center rounded-full bg-primary text-primary-foreground text-xs font-bold">A</span>
+          <span className="font-semibold tracking-tight">Atlas Intelligence</span>
+        </a>
+        <nav className="hidden md:flex items-center gap-1 text-sm">
+          {links.map((l) => (
+            <a key={l} href="#" className="rounded-full px-3 py-1.5 text-muted-foreground hover:text-foreground hover:bg-muted">
+              {l}
+            </a>
+          ))}
+          <a href="#market-maps" className="ml-1 rounded-full bg-foreground px-3 py-1.5 text-background">
+            Market Maps
+          </a>
+        </nav>
         <div className="flex items-center gap-2">
-          <button className="hidden items-center gap-1.5 rounded-full px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground md:inline-flex">
-            <Bookmark className="size-4" /> Saved
-          </button>
-          <button className="hidden rounded-full px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground md:inline-flex">
-            Sign in
-          </button>
-          <button className="rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90">
+          <a href="#" className="hidden sm:inline-flex text-sm font-medium text-muted-foreground hover:text-foreground">Sign in</a>
+          <a href="#" className="inline-flex items-center rounded-full bg-primary px-3.5 py-1.5 text-sm font-semibold text-primary-foreground hover:opacity-90">
             Get started
-          </button>
+          </a>
         </div>
       </div>
     </header>
@@ -103,9 +98,9 @@ function Hero() {
             AI ecosystem intelligence · updated daily
           </div>
           <h1 className="text-5xl font-semibold leading-[1.05] tracking-tight md:text-6xl">
-            Discover AI startups
+            AI Market Intelligence
             <br />
-            <span className="text-primary">building the future</span>
+            <span className="text-primary">for founders and investors</span>
           </h1>
           <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-muted-foreground">
             Track startups, funding rounds, acquisitions,emerging categories, investor activity and market signals across the global AI ecosystem.
@@ -239,110 +234,220 @@ function NetworkVisual() {
 
 function CategoryGrid() {
   return (
-    <section className="mx-auto max-w-7xl px-6 py-20">
+    <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
       <div className="mb-8 flex items-end justify-between gap-6">
         <div>
-          <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">Category discovery</p>
-          <h2 className="mt-2 text-3xl font-semibold tracking-tight">Track emerging AI categories</h2>
-          <p className="mt-2 max-w-xl text-sm text-muted-foreground">
-            Sixteen live sectors of the AI economy, ranked by momentum across funding, hiring, and product velocity.
+          <p className="text-xs uppercase tracking-wider text-muted-foreground">
+            Category discovery
+          </p>
+
+          <h2 className="mt-2 text-3xl font-semibold tracking-tight">
+            Track emerging AI categories
+          </h2>
+
+          <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
+            Sixteen live sectors of the AI economy, ranked by momentum across
+            funding, hiring and product velocity.
           </p>
         </div>
-        <a href="#" className="inline-flex shrink-0 items-center gap-1 text-sm font-medium text-foreground hover:text-primary">
-          All categories <ArrowRight className="size-4" />
+
+        <a
+          href="#"
+          className="hidden sm:inline-flex font-semibold text-primary hover:underline"
+        >
+          View all categories →
         </a>
       </div>
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+
+      <HorizontalScroller cardWidth={280}>
         {categories.map((c) => {
           const Icon = iconMap[c.icon];
+
           return (
-            <a key={c.name} href="#"
-              className="group rounded-2xl border border-border bg-card p-5 transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-[var(--shadow-card)]">
-              <div className="flex items-start justify-between">
-                <span className="grid size-9 place-items-center rounded-xl bg-primary-soft text-accent-foreground">
-                  <Icon className="size-4" />
+            <article
+              key={c.name}
+              className="snap-start shrink-0 w-[280px] rounded-2xl border border-border bg-card p-5 transition hover:shadow-sm"
+            >
+              <div className="flex items-center justify-between">
+                <span className="grid h-10 w-10 place-items-center rounded-xl bg-primary-soft text-accent-foreground">
+                  <Icon className="h-4 w-4" />
                 </span>
-                <ArrowUpRight className="size-4 text-muted-foreground/50 transition-colors group-hover:text-primary" />
-              </div>
-              <h3 className="mt-4 text-[15px] font-semibold tracking-tight">{c.name}</h3>
-              <p className="mt-1 line-clamp-1 text-xs text-muted-foreground">{c.notable}</p>
-              <div className="mt-4 flex items-center justify-between text-xs">
-                <span className="text-muted-foreground">{c.count.toLocaleString()} startups</span>
-                <span className="inline-flex items-center gap-1 font-medium text-[oklch(0.55_0.15_150)]">
-                  <TrendingUp className="size-3" /> {c.growth}
-                </span>
-              </div>
-              <div className="mt-3">
+
                 <MomentumBadge m={c.momentum} />
               </div>
-            </a>
+
+              <h3 className="mt-4 text-base font-semibold tracking-tight">
+                {c.name}
+              </h3>
+
+              <p className="mt-2 text-sm text-muted-foreground">
+                {c.notable}
+              </p>
+
+              <div className="mt-5 border-t border-border pt-4">
+                <div className="flex items-center justify-between text-sm">
+                  <span className="text-muted-foreground">
+                    Startups
+                  </span>
+
+                  <span className="font-semibold">
+                    {c.count.toLocaleString()}
+                  </span>
+                </div>
+
+                <div className="mt-3 flex items-center justify-between text-sm">
+                  <span className="text-muted-foreground">
+                    Growth
+                  </span>
+
+                  <span className="font-semibold text-primary">
+                    {c.growth}
+                  </span>
+                </div>
+              </div>
+
+              <div className="mt-4 flex justify-between border-t border-border pt-3 text-xs">
+                <span className="text-muted-foreground">
+                  Updated daily
+                </span>
+
+                <a
+                  href="#"
+                  className="font-semibold text-primary hover:underline"
+                >
+                  Explore →
+                </a>
+              </div>
+            </article>
           );
         })}
-      </div>
+      </HorizontalScroller>
     </section>
   );
 }
 
 function TrendingStartups() {
   return (
-    <section className="mx-auto max-w-7xl px-6 pb-20">
+    <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
       <div className="mb-8 flex items-end justify-between gap-6">
         <div>
-          <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">Trending now</p>
-          <h2 className="mt-2 text-3xl font-semibold tracking-tight">The startups everyone is watching</h2>
-          <p className="mt-2 text-sm text-muted-foreground">Curated by the Atlas research desk — refreshed every 24 hours.</p>
+          <p className="text-xs uppercase tracking-wider text-muted-foreground">
+            Trending now
+          </p>
+
+          <h2 className="mt-2 text-3xl font-semibold tracking-tight">
+            The startups everyone is watching
+          </h2>
+
+          <p className="mt-2 text-sm text-muted-foreground">
+            Curated by the Atlas research desk — refreshed every 24 hours.
+          </p>
         </div>
-        <a href="#" className="inline-flex shrink-0 items-center gap-1 text-sm font-medium text-foreground hover:text-primary">
-          See all 240 <ArrowRight className="size-4" />
+
+        <a
+          href="#"
+          className="hidden sm:inline-flex font-semibold text-primary hover:underline"
+        >
+          View all startups →
         </a>
       </div>
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+
+      <HorizontalScroller cardWidth={320}>
         {trendingStartups.map((s) => (
-          <article key={s.name} className="group rounded-2xl border border-border bg-card p-5 transition-shadow hover:shadow-[var(--shadow-card)]">
+          <article
+            key={s.name}
+            className="snap-start shrink-0 w-[320px] rounded-2xl border border-border bg-card p-5 transition hover:shadow-sm"
+          >
             <header className="flex items-start gap-3">
-              <span className="grid size-10 place-items-center rounded-xl text-sm font-semibold text-foreground/90"
-                style={{ background: s.color, opacity: 0.95 }}>
+              <span
+                className="grid h-10 w-10 place-items-center rounded-xl text-sm font-semibold text-foreground"
+                style={{ background: s.color, opacity: 0.95 }}
+              >
                 {s.initials}
               </span>
+
               <div className="min-w-0 flex-1">
-                <div className="flex items-center gap-2">
-                  <h3 className="truncate text-[15px] font-semibold tracking-tight">{s.name}</h3>
-                  <ArrowUpRight className="size-3.5 text-muted-foreground/50 transition-colors group-hover:text-primary" />
-                </div>
-                <p className="text-xs text-muted-foreground">{s.category} · {s.hq.split(",")[0]}</p>
+                <h3 className="truncate font-semibold tracking-tight">
+                  {s.name}
+                </h3>
+
+                <p className="text-xs text-muted-foreground">
+                  {s.category} · {s.hq.split(",")[0]}
+                </p>
               </div>
-              <button className="rounded-md p-1 text-muted-foreground hover:text-primary" aria-label="Save">
-                <Bookmark className="size-4" />
-              </button>
             </header>
-            <p className="mt-3 line-clamp-2 text-sm text-foreground/80">{s.tagline}</p>
-            <div className="mt-3 flex flex-wrap items-center gap-1.5">
+
+            <p className="mt-4 text-sm text-muted-foreground">
+              {s.tagline}
+            </p>
+
+            <div className="mt-4 flex items-center gap-2">
               <MomentumBadge m={s.momentum} />
-              <span className="rounded-full bg-secondary px-2 py-0.5 text-[11px] text-muted-foreground">{s.stage}</span>
+
+              <span className="rounded-full bg-secondary px-2 py-1 text-[11px] text-muted-foreground">
+                {s.stage}
+              </span>
             </div>
-            <div className="mt-4">
+
+            <div className="mt-5 border-t border-border pt-4">
+              <div className="flex items-center justify-between text-sm">
+                <span className="text-muted-foreground">
+                  Funding
+                </span>
+
+                <span className="font-semibold">
+                  {s.funding}
+                </span>
+              </div>
+
+              <div className="mt-3 flex items-center justify-between text-sm">
+                <span className="text-muted-foreground">
+                  Growth
+                </span>
+
+                <span className="font-semibold text-primary">
+                  {s.growth}
+                </span>
+              </div>
+
+              <div className="mt-3 flex items-center justify-between text-sm">
+                <span className="text-muted-foreground">
+                  Team
+                </span>
+
+                <span className="font-semibold">
+                  {s.employees}
+                </span>
+              </div>
             </div>
-            <dl className="mt-3 grid grid-cols-3 gap-2 border-t border-border pt-3 text-[11px]">
-              <div>
-                <dt className="text-muted-foreground">Raised</dt>
-                <dd className="font-semibold">{s.funding}</dd>
+
+            <div className="mt-4 border-t border-border pt-3">
+              <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                <Users className="h-3 w-3" />
+                <span className="truncate">
+                  {s.investors.slice(0, 3).join(" · ")}
+                  {s.investors.length > 3
+                    ? ` +${s.investors.length - 3}`
+                    : ""}
+                </span>
               </div>
-              <div>
-                <dt className="text-muted-foreground">Growth</dt>
-                <dd className="font-semibold text-[oklch(0.55_0.15_150)]">{s.growth}</dd>
-              </div>
-              <div>
-                <dt className="text-muted-foreground">Team</dt>
-                <dd className="font-semibold">{s.employees}</dd>
-              </div>
-            </dl>
-            <div className="mt-3 flex items-center gap-1 text-[11px] text-muted-foreground">
-              <Users className="size-3" />
-              <span className="truncate">{s.investors.slice(0, 3).join(" · ")}{s.investors.length > 3 ? ` +${s.investors.length - 3}` : ""}</span>
+            </div>
+
+            <div className="mt-4 flex justify-between border-t border-border pt-3 text-xs">
+              <span className="text-muted-foreground">
+                Updated today
+              </span>
+
+              <a
+                href="#"
+                className="font-semibold text-primary hover:underline"
+              >
+                View startup →
+              </a>
             </div>
           </article>
         ))}
-      </div>
+      </HorizontalScroller>
     </section>
   );
 }
@@ -351,100 +456,167 @@ function EcosystemMap() {
   const focus = {
     name: "OpenAI",
     type: "Foundation model lab · San Francisco",
-    connections: ["Microsoft (strategic)", "Cursor (model)", "Thrive (investor)", "Perplexity (model)", "Sam Altman (founder)"],
+    connections: [
+      "Microsoft",
+      "Cursor",
+      "Thrive",
+      "Perplexity",
+    ],
     relationships: [
-      { kind: "Acquisition", text: "Microsoft acquires Inflection AI team — Suleyman joins Microsoft AI", date: "Mar 2024" },
-      { kind: "Partnership", text: "Anthropic deepens AWS partnership for Trainium-based inference", date: "5d ago" },
-      { kind: "Investor", text: "Thrive Capital leads Cursor's $900M Series C at $9.9B", date: "Jun 6" },
-      { kind: "Talent", text: "Cursor hires 24% of new senior engineers from OpenAI alumni", date: "Jun 1" },
+      {
+        kind: "Acquisition",
+        text: "Microsoft acquires Inflection AI team.",
+        date: "Mar 2024",
+      },
+      {
+        kind: "Investor",
+        text: "Thrive leads Cursor's $900M Series C.",
+        date: "Jun 6",
+      },
     ],
   };
-  const filters = ["All", "Founder → Company", "Investor → Startup", "Startup → Model", "Acquisitions", "Partnerships"];
+
+  const filters = [
+    "All",
+    "Founder → Company",
+    "Investor → Startup",
+    "Startup → Model",
+  ];
+
   return (
-    <section className="mx-auto max-w-7xl px-6 pb-20">
-      <div className="mb-8 flex items-end justify-between gap-6">
+    <section className="mx-auto max-w-7xl px-6 pb-14">
+      <div className="mb-5 flex items-end justify-between gap-6">
         <div>
-          <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">Atlas knowledge graph</p>
-          <h2 className="mt-2 text-3xl font-semibold tracking-tight">The AI ecosystem, mapped</h2>
+          <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">
+            Atlas knowledge graph
+          </p>
+
+          <h2 className="mt-2 text-2xl font-semibold tracking-tight">
+            The AI ecosystem, mapped
+          </h2>
+
           <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-            Explore relationships between founders, startups, investors, foundation models, infrastructure providers,
-            and the enterprises acquiring them.
+            Relationships between startups, founders, investors,
+            foundation models and enterprises.
           </p>
         </div>
-        <a href="#" className="inline-flex shrink-0 items-center gap-1 text-sm font-medium text-foreground hover:text-primary">
-          Open full graph <ArrowUpRight className="size-4" />
+
+        <a
+          href="#"
+          className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline"
+        >
+          Open full graph
+          <ArrowUpRight className="size-4" />
         </a>
       </div>
 
       <div className="mb-4 flex flex-wrap gap-2">
         {filters.map((f, i) => (
-          <button key={f}
+          <button
+            key={f}
             className={`rounded-full px-3 py-1.5 text-xs transition-colors ${
-              i === 0 ? "bg-foreground text-background" : "border border-border bg-card text-muted-foreground hover:text-foreground"
-            }`}>
+              i === 0
+                ? "bg-primary text-primary-foreground"
+                : "border border-border bg-card text-muted-foreground hover:text-foreground"
+            }`}
+          >
             {f}
           </button>
         ))}
       </div>
 
-      <div className="grid gap-4 lg:grid-cols-[1.4fr_1fr]">
-        <div className="relative aspect-[1.7/1] overflow-hidden rounded-3xl border border-border bg-card">
-          <div className="absolute inset-0" style={{ background: "var(--gradient-network)" }} />
-          <BigGraph />
-          <div className="absolute left-5 top-5 inline-flex items-center gap-1.5 rounded-full bg-background/80 px-2.5 py-1 text-[11px] text-muted-foreground backdrop-blur">
-            <Network className="size-3" /> 16 sectors · 26,482 entities · 184k relationships
-          </div>
-          <div className="absolute bottom-5 left-5 right-5 flex flex-wrap items-center justify-between gap-3 rounded-xl bg-background/80 px-3 py-2 text-[11px] text-muted-foreground backdrop-blur">
-            <div className="flex flex-wrap items-center gap-3">
-              {[
-                ["Model", "oklch(0.62 0.16 150)"],
-                ["Startup", "oklch(0.68 0.21 18)"],
-                ["Investor", "oklch(0.62 0.14 230)"],
-                ["Enterprise", "oklch(0.55 0.18 300)"],
-              ].map(([k, c]) => (
-                <span key={k} className="inline-flex items-center gap-1.5">
-                  <span className="size-2 rounded-full" style={{ background: c }} /> {k}
-                </span>
-              ))}
+      <div className="grid gap-4 lg:grid-cols-[7fr_3fr]">
+        {/* GRAPH */}
+        <div className="relative overflow-hidden rounded-3xl border border-border bg-card shadow-sm">
+          <div
+            className="absolute inset-0"
+            style={{ background: "var(--gradient-network)" }}
+          />
+
+          <div className="relative h-full min-h-[280px]">
+            <BigGraph />
+
+            <div className="absolute left-4 top-4 rounded-full border border-border bg-background/80 px-3 py-1 text-[10px] text-muted-foreground backdrop-blur">
+              26k nodes · 184k links
             </div>
-            <div className="flex flex-wrap items-center gap-3">
-              <span className="inline-flex items-center gap-1.5">
-                <span className="h-px w-4 bg-[oklch(0.68_0.21_18/0.7)]" /> Investment
-              </span>
-              <span className="inline-flex items-center gap-1.5">
-                <span className="h-px w-4 bg-[oklch(0.5_0.02_270/0.4)]" /> Partnership
-              </span>
+
+            <div className="absolute bottom-4 left-4 rounded-full border border-border bg-background/80 px-3 py-1 text-[10px] text-muted-foreground backdrop-blur">
+              Model · Startup · Investor · Enterprise
             </div>
           </div>
         </div>
 
-        <div className="rounded-3xl border border-border bg-card p-5">
-          <p className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">In focus today</p>
+        {/* SIDEBAR */}
+        <div className="rounded-3xl border border-border bg-card p-4 shadow-sm">
+          <p className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+            In Focus
+          </p>
+
           <div className="mt-3 flex items-center gap-3">
-            <span className="grid size-10 place-items-center rounded-xl bg-[oklch(0.78_0.16_145)] text-sm font-semibold">OA</span>
+            <span className="grid size-10 place-items-center rounded-xl bg-primary-soft text-sm font-semibold text-accent-foreground">
+              OA
+            </span>
+
             <div>
-              <h3 className="text-base font-semibold tracking-tight">{focus.name}</h3>
-              <p className="text-xs text-muted-foreground">{focus.type}</p>
+              <h3 className="font-semibold tracking-tight">
+                {focus.name}
+              </h3>
+
+              <p className="text-xs text-muted-foreground">
+                {focus.type}
+              </p>
             </div>
           </div>
-          <p className="mt-5 text-[11px] uppercase tracking-[0.14em] text-muted-foreground">Connections</p>
+
+          <p className="mt-5 text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+            Connections
+          </p>
+
           <div className="mt-2 flex flex-wrap gap-1.5">
             {focus.connections.map((c) => (
-              <span key={c} className="rounded-full bg-secondary px-2 py-0.5 text-[11px] text-foreground/80">· {c}</span>
+              <span
+                key={c}
+                className="rounded-full bg-secondary px-2.5 py-1 text-[11px] text-foreground/80"
+              >
+                {c}
+              </span>
             ))}
           </div>
-          <p className="mt-5 text-[11px] uppercase tracking-[0.14em] text-muted-foreground">Recent signals</p>
-          <ul className="mt-2 space-y-2">
+
+          <p className="mt-5 text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+            Recent Signals
+          </p>
+
+          <div className="mt-2 space-y-2">
             {focus.relationships.map((r) => (
-              <li key={r.text} className="rounded-xl border border-border bg-background/50 p-3">
-                <div className="flex items-center justify-between text-[10px] uppercase tracking-wide">
-                  <span className="rounded-full bg-primary-soft px-2 py-0.5 text-accent-foreground">{r.kind}</span>
-                  <span className="text-muted-foreground">{r.date}</span>
+              <div
+                key={r.text}
+                className="rounded-xl border border-border bg-secondary/40 p-2.5"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="rounded-full bg-primary-soft px-2 py-0.5 text-[10px] font-medium text-accent-foreground">
+                    {r.kind}
+                  </span>
+
+                  <span className="text-[10px] text-muted-foreground">
+                    {r.date}
+                  </span>
                 </div>
-                <p className="mt-1.5 text-[13px] text-foreground/85">{r.text}</p>
-              </li>
+
+                <p className="mt-2 text-xs leading-relaxed text-foreground/85">
+                  {r.text}
+                </p>
+              </div>
             ))}
-          </ul>
+          </div>
+
+          <a
+            href="#"
+            className="mt-4 inline-flex items-center gap-1 text-xs font-medium text-primary hover:underline"
+          >
+            View entity profile
+            <ArrowUpRight className="size-3.5" />
+          </a>
         </div>
       </div>
     </section>
@@ -510,7 +682,7 @@ function BigGraph() {
     ["Sierra", "Founders Fund", "primary"],
   ];
   return (
-    <svg viewBox="0 0 200 120" className="relative h-full w-full" preserveAspectRatio="xMidYMid meet">
+    <svg viewBox="0 0 200 120" className="absolute inset-0 h-full w-full" preserveAspectRatio="xMidYMid meet">
       {edges.map(([a, b, kind], i) => {
         const A = by(a), B = by(b);
         return (
@@ -546,70 +718,169 @@ function BigGraph() {
 
 function FundingAndMarket() {
   return (
-    <section className="mx-auto max-w-7xl px-6 pb-20">
-      <div className="grid gap-4 lg:grid-cols-[1.55fr_1fr]">
-        <div className="rounded-3xl border border-border bg-card p-6">
-          <div className="flex items-start justify-between">
+    <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <div className="space-y-8">
+        {/* Recent Funding */}
+        <div>
+          <div className="mb-8 flex items-end justify-between gap-6">
             <div>
-              <p className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">Live ecosystem activity</p>
-              <h3 className="mt-1 text-xl font-semibold tracking-tight">Recent funding</h3>
-              <p className="text-sm text-muted-foreground">Investments tracked over the past 7 days.</p>
+              <p className="text-xs uppercase tracking-wider text-muted-foreground">
+                Live ecosystem activity
+              </p>
+
+              <h2 className="mt-2 text-3xl font-semibold tracking-tight">
+                Recent funding
+              </h2>
+
+              <p className="mt-2 text-sm text-muted-foreground">
+                Investments tracked over the past 7 days.
+              </p>
             </div>
-            <a href="#" className="text-sm font-medium text-foreground hover:text-primary">View all →</a>
+
+            <a
+              href="#"
+              className="hidden sm:inline-flex font-semibold text-primary hover:underline"
+            >
+              View all funding →
+            </a>
           </div>
-          <div className="mt-5 divide-y divide-border">
+
+          <HorizontalScroller cardWidth={340}>
             {recentFunding.map((r) => (
-              <div key={r.company} className="grid grid-cols-12 items-center gap-3 py-3 text-sm">
-                <div className="col-span-4 flex items-center gap-3 min-w-0">
-                  <span className="grid size-8 place-items-center rounded-lg bg-primary-soft text-[11px] font-semibold text-accent-foreground">
+              <article
+                key={r.company}
+                className="snap-start shrink-0 w-[340px] rounded-2xl border border-border bg-card p-5 transition hover:shadow-sm"
+              >
+                <div className="flex items-start gap-3">
+                  <span className="grid h-10 w-10 place-items-center rounded-xl bg-primary-soft text-xs font-semibold text-accent-foreground">
                     {r.company.slice(0, 2)}
                   </span>
-                  <div className="min-w-0">
-                    <p className="truncate font-medium">{r.company}</p>
-                    <p className="truncate text-xs text-muted-foreground">{r.category} · {r.valuation} val.</p>
+
+                  <div className="min-w-0 flex-1">
+                    <h3 className="truncate font-semibold">
+                      {r.company}
+                    </h3>
+
+                    <p className="text-xs text-muted-foreground">
+                      {r.category} · {r.valuation} valuation
+                    </p>
                   </div>
                 </div>
-                <div className="col-span-2 font-semibold tabular-nums">{r.amount}</div>
-                <div className="col-span-2">
-                  <span className="rounded-full bg-secondary px-2 py-0.5 text-[11px] text-foreground/80">{r.round}</span>
+
+                <div className="mt-5 border-t border-border pt-4">
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-muted-foreground">
+                      Raised
+                    </span>
+
+                    <span className="font-semibold">
+                      {r.amount}
+                    </span>
+                  </div>
+
+                  <div className="mt-3 flex items-center justify-between text-sm">
+                    <span className="text-muted-foreground">
+                      Round
+                    </span>
+
+                    <span className="font-semibold text-primary">
+                      {r.round}
+                    </span>
+                  </div>
+
+                  <div className="mt-3 flex items-center justify-between text-sm">
+                    <span className="text-muted-foreground">
+                      Lead
+                    </span>
+
+                    <span className="font-semibold">
+                      {r.lead}
+                    </span>
+                  </div>
                 </div>
-                <div className="col-span-3 flex items-center gap-1.5 text-xs text-muted-foreground min-w-0">
-                  <span className="size-5 rounded-full bg-foreground/85" />
-                  <span className="truncate">Led by {r.lead}</span>
+
+                <div className="mt-4 flex justify-between border-t border-border pt-3 text-xs">
+                  <span className="text-muted-foreground">
+                    {r.date}
+                  </span>
+
+                  <a
+                    href="#"
+                    className="font-semibold text-primary hover:underline"
+                  >
+                    View round →
+                  </a>
                 </div>
-                <div className="col-span-1 text-right text-xs text-muted-foreground">{r.date}</div>
-              </div>
+              </article>
             ))}
-          </div>
-          <div className="mt-4 flex flex-wrap gap-2 border-t border-border pt-4 text-[11px] text-muted-foreground">
-            <span className="rounded-full bg-secondary px-2 py-1">AI coding startups dominated Series A activity</span>
-            <span className="rounded-full bg-secondary px-2 py-1">Voice AI funding +42% QoQ</span>
-            <span className="rounded-full bg-secondary px-2 py-1">Enterprise copilots lead Series B</span>
+          </HorizontalScroller>
+
+          <div className="mt-5 flex flex-wrap gap-2">
+            <span className="rounded-full bg-secondary px-3 py-1 text-xs text-muted-foreground">
+              AI coding startups dominated Series A activity
+            </span>
+
+            <span className="rounded-full bg-secondary px-3 py-1 text-xs text-muted-foreground">
+              Voice AI funding +42% QoQ
+            </span>
+
+            <span className="rounded-full bg-secondary px-3 py-1 text-xs text-muted-foreground">
+              Enterprise copilots lead Series B
+            </span>
           </div>
         </div>
 
-        <div className="rounded-3xl border border-border bg-card p-6">
-          <div className="flex items-start justify-between">
+        {/* Intelligence Brief */}
+        <div>
+          <div className="mb-8 flex items-end justify-between gap-6">
             <div>
-              <p className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">Atlas Intelligence Brief</p>
-              <h3 className="mt-1 text-xl font-semibold tracking-tight">What the data is telling us</h3>
-              <p className="text-sm text-muted-foreground">Six ecosystem observations from our research desk this week.</p>
+              <p className="text-xs uppercase tracking-wider text-muted-foreground">
+                Atlas Intelligence Brief
+              </p>
+
+              <h2 className="mt-2 text-3xl font-semibold tracking-tight">
+                What the data is telling us
+              </h2>
+
+              <p className="mt-2 text-sm text-muted-foreground">
+                Six ecosystem observations from our research desk this week.
+              </p>
             </div>
-            <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-secondary px-2 py-1 text-[11px] text-muted-foreground">
-              <Activity className="size-3" /> Daily
+
+            <span className="inline-flex items-center gap-1 rounded-full bg-secondary px-3 py-1 text-xs text-muted-foreground">
+              <Activity className="size-3" />
+              Daily
             </span>
           </div>
-          <ul className="mt-5 space-y-3">
+
+          <HorizontalScroller cardWidth={320}>
             {intelligenceBrief.map((b) => (
-              <li key={b.text} className="flex gap-3 rounded-2xl border border-border bg-background/40 p-3">
-                <span className="shrink-0 text-lg font-semibold tracking-tight text-primary tabular-nums">{b.stat}</span>
-                <div className="min-w-0">
-                  <span className="text-[10px] font-medium uppercase tracking-wide text-muted-foreground">{b.tag}</span>
-                  <p className="mt-0.5 text-[13px] leading-snug text-foreground/85">{b.text}</p>
+              <article
+                key={b.text}
+                className="snap-start shrink-0 w-[320px] rounded-2xl border border-border bg-card p-5 transition hover:shadow-sm"
+              >
+                <div className="text-3xl font-bold text-primary tabular-nums">
+                  {b.stat}
                 </div>
-              </li>
+
+                <div className="mt-3">
+                  <span className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+                    {b.tag}
+                  </span>
+
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    {b.text}
+                  </p>
+                </div>
+
+                <div className="mt-4 border-t border-border pt-3 text-xs">
+                  <span className="text-primary font-semibold">
+                    Research signal →
+                  </span>
+                </div>
+              </article>
             ))}
-          </ul>
+          </HorizontalScroller>
         </div>
       </div>
     </section>
@@ -618,22 +889,63 @@ function FundingAndMarket() {
 
 function Insights() {
   return (
-    <section className="mx-auto max-w-7xl px-6 pb-20">
-      <div className="mb-6">
-        <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">Market signals this week</p>
-        <h2 className="mt-2 text-3xl font-semibold tracking-tight">What's moving the AI economy</h2>
+    <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <div className="mb-8 flex items-end justify-between gap-6">
+        <div>
+          <p className="text-xs uppercase tracking-wider text-muted-foreground">
+            Market signals
+          </p>
+
+          <h2 className="mt-2 text-3xl font-semibold tracking-tight">
+            What's moving the AI economy
+          </h2>
+
+          <p className="mt-2 text-sm text-muted-foreground">
+            Key metrics and trends shaping the ecosystem this week.
+          </p>
+        </div>
+
+        <a
+          href="#"
+          className="hidden sm:inline-flex font-semibold text-primary hover:underline"
+        >
+          View all signals →
+        </a>
       </div>
-      <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+
+      <HorizontalScroller cardWidth={300}>
         {insights.map((i) => (
-          <article key={i.text} className="rounded-2xl border border-border bg-card p-5">
-            <span className="inline-flex items-center gap-1 rounded-full bg-secondary px-2 py-0.5 text-[11px] text-muted-foreground">
+          <article
+            key={i.text}
+            className="snap-start shrink-0 w-[300px] rounded-2xl border border-border bg-card p-5 transition hover:shadow-sm"
+          >
+            <span className="inline-flex items-center rounded-full bg-secondary px-2.5 py-1 text-[11px] text-muted-foreground">
               {i.tag}
             </span>
-            <p className="mt-3 text-3xl font-semibold tracking-tight text-primary tabular-nums">{i.stat}</p>
-            <p className="mt-2 text-sm text-foreground/80">{i.text}</p>
+
+            <p className="mt-4 text-4xl font-bold tracking-tight text-primary tabular-nums">
+              {i.stat}
+            </p>
+
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              {i.text}
+            </p>
+
+            <div className="mt-5 flex justify-between border-t border-border pt-3 text-xs">
+              <span className="text-muted-foreground">
+                This week
+              </span>
+
+              <a
+                href="#"
+                className="font-semibold text-primary hover:underline"
+              >
+                View signal →
+              </a>
+            </div>
           </article>
         ))}
-      </div>
+      </HorizontalScroller>
     </section>
   );
 }
@@ -706,22 +1018,38 @@ function Reports() {
   const featured = reports.find((r) => r.featured)!;
 
   return (
-    <section className="mx-auto max-w-7xl px-6 pb-24">
+    <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
       <div className="mb-8 flex items-end justify-between gap-6">
         <div>
-          <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">Atlas Research</p>
-          <h2 className="mt-2 text-3xl font-semibold tracking-tight">Reports &amp; deep dives</h2>
-          <p className="mt-2 text-sm text-muted-foreground">In-house intelligence from the Atlas research desk.</p>
+          <p className="text-xs uppercase tracking-wider text-muted-foreground">
+            Atlas Research
+          </p>
+
+          <h2 className="mt-2 text-3xl font-semibold tracking-tight">
+            Reports &amp; Deep Dives
+          </h2>
+
+          <p className="mt-2 text-sm text-muted-foreground">
+            In-house intelligence from the Atlas research desk.
+          </p>
         </div>
-        <a href="#" className="inline-flex shrink-0 items-center gap-1 text-sm font-medium text-foreground hover:text-primary">
-          All reports <ArrowRight className="size-4" />
+
+        <a
+          href="#"
+          className="hidden sm:inline-flex font-semibold text-primary hover:underline"
+        >
+          View all reports →
         </a>
       </div>
 
       <div className="grid gap-4 lg:grid-cols-3">
         <ReportCard r={featured} featured />
+
         {small.map((r) => (
-          <ReportCard key={r.title} r={r} />
+          <ReportCard
+            key={r.title}
+            r={r}
+          />
         ))}
       </div>
     </section>
@@ -730,216 +1058,348 @@ function Reports() {
 
 function Investors() {
   return (
-    <section className="mx-auto max-w-7xl px-6 pb-20">
+    <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
       <div className="mb-8 flex items-end justify-between gap-6">
         <div>
-          <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">Investor intelligence</p>
-          <h2 className="mt-2 text-3xl font-semibold tracking-tight">Where capital is flowing</h2>
+          <p className="text-xs uppercase tracking-wider text-muted-foreground">
+            Investor intelligence
+          </p>
+
+          <h2 className="mt-2 text-3xl font-semibold tracking-tight">
+            Where capital is flowing
+          </h2>
+
           <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-            Track the investors shaping the AI ecosystem — deal velocity, sector focus and portfolio momentum.
+            Track the investors shaping the AI ecosystem — deal velocity,
+            sector focus and portfolio momentum.
           </p>
         </div>
-        <a href="#" className="inline-flex shrink-0 items-center gap-1 text-sm font-medium text-foreground hover:text-primary">
-          All investors <ArrowRight className="size-4" />
+
+        <a
+          href="#"
+          className="hidden sm:inline-flex font-semibold text-primary hover:underline"
+        >
+          View all investors →
         </a>
       </div>
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+
+      <HorizontalScroller cardWidth={360}>
         {investors.map((inv) => (
-          <article key={inv.name} className="group rounded-2xl border border-border bg-card p-5 transition-shadow hover:shadow-[var(--shadow-card)]">
+          <article
+            key={inv.name}
+            className="snap-start shrink-0 w-[360px] rounded-2xl border border-border bg-card p-5 transition hover:shadow-sm"
+          >
             <header className="flex items-start gap-3">
-              <span className="grid size-10 place-items-center rounded-xl text-sm font-semibold text-foreground/90"
-                style={{ background: inv.color, opacity: 0.95 }}>
+              <span
+                className="grid h-10 w-10 place-items-center rounded-xl text-sm font-semibold text-foreground"
+                style={{ background: inv.color, opacity: 0.95 }}
+              >
                 {inv.initials}
               </span>
+
               <div className="min-w-0 flex-1">
-                <h3 className="truncate text-[15px] font-semibold tracking-tight">{inv.name}</h3>
-                <p className="text-xs text-muted-foreground">{inv.aum} AUM · {inv.dealsYtd} AI deals YTD</p>
+                <h3 className="truncate font-semibold tracking-tight">
+                  {inv.name}
+                </h3>
+
+                <p className="text-xs text-muted-foreground">
+                  {inv.aum} AUM · {inv.dealsYtd} AI deals YTD
+                </p>
               </div>
-              <ArrowUpRight className="size-3.5 text-muted-foreground/50 transition-colors group-hover:text-primary" />
             </header>
-            <div className="mt-3">
+
+            <div className="mt-4">
               <MomentumBadge m={inv.momentum} />
             </div>
-            <p className="mt-3 text-[11px] uppercase tracking-[0.14em] text-muted-foreground">Sector focus</p>
-            <div className="mt-1.5 flex flex-wrap gap-1">
-              {inv.sectors.map((s) => (
-                <span key={s} className="rounded-full bg-secondary px-2 py-0.5 text-[11px] text-foreground/80">{s}</span>
-              ))}
-            </div>
-            <p className="mt-3 text-[11px] uppercase tracking-[0.14em] text-muted-foreground">Recent investments</p>
-            <p className="mt-1 text-sm text-foreground/85">{inv.recent.join(" · ")}</p>
-            <div className="mt-3 border-t border-border pt-3">
-              <p className="mt-2 text-[11px] leading-snug text-muted-foreground">{inv.note}</p>
-            </div>
-          </article>
-        ))}
-      </div>
-    </section>
-  );
-}
 
-function Founders() {
-  return (
-    <section className="mx-auto max-w-7xl px-6 pb-20">
-      <div className="mb-8 flex items-end justify-between gap-6">
-        <div>
-          <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">Founder intelligence</p>
-          <h2 className="mt-2 text-3xl font-semibold tracking-tight">Founders to watch</h2>
-          <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-            The builders driving the next wave of AI innovation — ranked by ecosystem influence.
-          </p>
-        </div>
-        <a href="#" className="inline-flex shrink-0 items-center gap-1 text-sm font-medium text-foreground hover:text-primary">
-          All founders <ArrowRight className="size-4" />
-        </a>
-      </div>
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {founders.map((f) => (
-          <article key={f.name} className="group rounded-2xl border border-border bg-card p-5 transition-shadow hover:shadow-[var(--shadow-card)]">
-            <header className="flex items-start gap-3">
-              <span className="grid size-11 place-items-center rounded-full text-sm font-semibold text-foreground/90"
-                style={{ background: f.color, opacity: 0.95 }}>
-                {f.initials}
+            <div className="mt-5 border-t border-border pt-4">
+              <p className="text-[11px] uppercase tracking-wider text-muted-foreground">
+                Sector focus
+              </p>
+
+              <div className="mt-2 flex flex-wrap gap-1">
+                {inv.sectors.map((s) => (
+                  <span
+                    key={s}
+                    className="rounded-full bg-secondary px-2 py-1 text-[11px] text-muted-foreground"
+                  >
+                    {s}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-4">
+              <p className="text-[11px] uppercase tracking-wider text-muted-foreground">
+                Recent investments
+              </p>
+
+              <p className="mt-2 text-sm text-muted-foreground">
+                {inv.recent.join(" · ")}
+              </p>
+            </div>
+
+            <div className="mt-4 border-t border-border pt-4">
+              <p className="text-xs leading-relaxed text-muted-foreground">
+                {inv.note}
+              </p>
+            </div>
+
+            <div className="mt-4 flex justify-between border-t border-border pt-3 text-xs">
+              <span className="text-muted-foreground">
+                Updated today
               </span>
-              <div className="min-w-0 flex-1">
-                <h3 className="truncate text-[15px] font-semibold tracking-tight">{f.name}</h3>
-                <p className="text-xs text-muted-foreground">{f.role} · {f.company}</p>
-              </div>
-              <div className="shrink-0 rounded-lg bg-primary-soft px-2 py-1 text-center">
-                <p className="text-[9px] uppercase tracking-wide text-accent-foreground/80">Influence</p>
-                <p className="text-sm font-semibold tabular-nums text-accent-foreground">{f.influence}</p>
-              </div>
-            </header>
-            <p className="mt-3 text-sm text-foreground/85">{f.achievements}</p>
-            <div className="mt-3 grid grid-cols-1 gap-2 text-[11px]">
-              <div>
-                <span className="text-muted-foreground">Previously: </span>
-                <span className="text-foreground/85">{f.previous.join(" · ")}</span>
-              </div>
-              <div>
-                <span className="text-muted-foreground">Backers: </span>
-                <span className="text-foreground/85">{f.backers.join(" · ")}</span>
-              </div>
-              <div className="flex items-start gap-1">
-                <Network className="mt-0.5 size-3 shrink-0 text-muted-foreground" />
-                <span className="text-foreground/75">{f.connections.join(" → ")}</span>
-              </div>
+
+              <a
+                href="#"
+                className="font-semibold text-primary hover:underline"
+              >
+                View investor →
+              </a>
             </div>
           </article>
         ))}
-      </div>
+      </HorizontalScroller>
     </section>
   );
 }
 
 function Acquisitions() {
   return (
-    <section className="mx-auto max-w-7xl px-6 pb-20">
+    <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
       <div className="mb-8 flex items-end justify-between gap-6">
         <div>
-          <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">M&amp;A intelligence</p>
-          <h2 className="mt-2 text-3xl font-semibold tracking-tight">Strategic acquisitions</h2>
+          <p className="text-xs uppercase tracking-wider text-muted-foreground">
+            M&amp;A Intelligence
+          </p>
+
+          <h2 className="mt-2 text-3xl font-semibold tracking-tight">
+            Strategic acquisitions
+          </h2>
+
           <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-            How hyperscalers and platform companies are absorbing AI talent and technology.
+            How hyperscalers and platform companies are absorbing AI talent and
+            technology.
           </p>
         </div>
-        <a href="#" className="inline-flex shrink-0 items-center gap-1 text-sm font-medium text-foreground hover:text-primary">
-          All deals <ArrowRight className="size-4" />
+
+        <a
+          href="#"
+          className="hidden sm:inline-flex font-semibold text-primary hover:underline"
+        >
+          View all deals →
         </a>
       </div>
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+
+      <HorizontalScroller cardWidth={360}>
         {acquisitions.map((a) => (
-          <article key={`${a.acquirer}-${a.target}`} className="rounded-2xl border border-border bg-card p-5">
-            <div className="flex items-center justify-between text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+          <article
+            key={`${a.acquirer}-${a.target}`}
+            className="snap-start shrink-0 w-[360px] rounded-2xl border border-border bg-card p-5 transition hover:shadow-sm"
+          >
+            <div className="flex items-center justify-between text-[11px] uppercase tracking-wider text-muted-foreground">
               <span>{a.type}</span>
               <span>{a.date}</span>
             </div>
-            <div className="mt-3 flex items-center gap-2 text-[15px] font-semibold tracking-tight">
-              <span>{a.acquirer}</span>
-              <ArrowRight className="size-4 text-muted-foreground" />
-              <span>{a.target}</span>
+
+            <h3 className="mt-4 text-lg font-semibold tracking-tight">
+              <span className="text-primary">{a.acquirer}</span>
+              <span className="mx-2 text-muted-foreground">→</span>
+              {a.target}
+            </h3>
+
+            <div className="mt-4 flex flex-wrap gap-2">
+              <span className="rounded-full bg-primary-soft px-2.5 py-1 text-[11px] font-medium text-accent-foreground">
+                {a.size}
+              </span>
+
+              <span className="rounded-full bg-secondary px-2.5 py-1 text-[11px] text-muted-foreground">
+                {a.sector}
+              </span>
             </div>
-            <div className="mt-2 flex items-center gap-2">
-              <span className="rounded-full bg-primary-soft px-2 py-0.5 text-[11px] font-medium text-accent-foreground tabular-nums">{a.size}</span>
-              <span className="rounded-full bg-secondary px-2 py-0.5 text-[11px] text-muted-foreground">{a.sector}</span>
-            </div>
-            <p className="mt-3 text-sm text-foreground/85">{a.reason}</p>
-            <p className="mt-2 border-t border-border pt-2 text-[11px] text-muted-foreground">
-              <span className="font-medium text-foreground/70">Sector impact: </span>{a.impact}
+
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              {a.reason}
             </p>
+
+            <div className="mt-5 border-t border-border pt-4">
+              <p className="text-xs leading-relaxed text-muted-foreground">
+                <span className="font-medium text-foreground">
+                  Sector impact:
+                </span>{" "}
+                {a.impact}
+              </p>
+            </div>
+
+            <div className="mt-4 flex justify-between border-t border-border pt-3 text-xs">
+              <span className="text-muted-foreground">
+                Updated this week
+              </span>
+
+              <a
+                href="#"
+                className="font-semibold text-primary hover:underline"
+              >
+                View deal →
+              </a>
+            </div>
           </article>
         ))}
-      </div>
+      </HorizontalScroller>
     </section>
   );
 }
 
 function Emerging() {
   return (
-    <section className="mx-auto max-w-7xl px-6 pb-20">
+    <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
       <div className="mb-8 flex items-end justify-between gap-6">
         <div>
-          <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">Sector intelligence</p>
-          <h2 className="mt-2 text-3xl font-semibold tracking-tight">Emerging AI categories</h2>
+          <p className="text-xs uppercase tracking-wider text-muted-foreground">
+            Sector intelligence
+          </p>
+
+          <h2 className="mt-2 text-3xl font-semibold tracking-tight">
+            Emerging AI categories
+          </h2>
+
           <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-            The fastest-growing sub-sectors of the AI economy — measured by funding, founding rate, and momentum.
+            The fastest-growing sub-sectors of the AI economy — measured by
+            funding, founding rate, and momentum.
           </p>
         </div>
+
+        <a
+          href="#"
+          className="hidden sm:inline-flex font-semibold text-primary hover:underline"
+        >
+          View all categories →
+        </a>
       </div>
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+
+      <HorizontalScroller cardWidth={320}>
         {emergingCategories.map((c) => (
-          <article key={c.name} className="rounded-2xl border border-border bg-card p-5">
-            <div className="flex items-start justify-between gap-2">
-              <h3 className="text-[15px] font-semibold tracking-tight">{c.name}</h3>
-              <span className="inline-flex items-center gap-1 rounded-full bg-primary-soft px-2 py-0.5 text-[11px] font-medium text-accent-foreground tabular-nums">
-                <TrendingUp className="size-3" /> {c.growth}
+          <article
+            key={c.name}
+            className="snap-start shrink-0 w-[320px] rounded-2xl border border-border bg-card p-5 transition hover:shadow-sm"
+          >
+            <div className="flex items-start justify-between gap-3">
+              <h3 className="font-semibold tracking-tight">
+                {c.name}
+              </h3>
+
+              <span className="inline-flex items-center gap-1 rounded-full bg-primary-soft px-2.5 py-1 text-[11px] font-medium text-accent-foreground">
+                <TrendingUp className="h-3 w-3" />
+                {c.growth}
               </span>
             </div>
-            <dl className="mt-3 grid grid-cols-2 gap-2 text-[11px]">
-              <div>
-                <dt className="text-muted-foreground">Startups</dt>
-                <dd className="font-semibold tabular-nums">{c.startups}</dd>
+
+            <div className="mt-5 border-t border-border pt-4">
+              <div className="flex items-center justify-between text-sm">
+                <span className="text-muted-foreground">
+                  Startups
+                </span>
+
+                <span className="font-semibold">
+                  {c.startups}
+                </span>
               </div>
-              <div>
-                <dt className="text-muted-foreground">Funding</dt>
-                <dd className="font-semibold tabular-nums">{c.funding}</dd>
+
+              <div className="mt-3 flex items-center justify-between text-sm">
+                <span className="text-muted-foreground">
+                  Funding
+                </span>
+
+                <span className="font-semibold text-primary">
+                  {c.funding}
+                </span>
               </div>
-            </dl>
-            <p className="mt-3 border-t border-border pt-3 text-[11px] uppercase tracking-[0.14em] text-muted-foreground">Key companies</p>
-            <p className="mt-1 text-sm text-foreground/85">{c.companies.join(" · ")}</p>
+            </div>
+
+            <div className="mt-5 border-t border-border pt-4">
+              <p className="text-[11px] uppercase tracking-wider text-muted-foreground">
+                Key companies
+              </p>
+
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                {c.companies.join(" · ")}
+              </p>
+            </div>
+
+            <div className="mt-4 flex justify-between border-t border-border pt-3 text-xs">
+              <span className="text-muted-foreground">
+                Updated this week
+              </span>
+
+              <a
+                href="#"
+                className="font-semibold text-primary hover:underline"
+              >
+                Explore sector →
+              </a>
+            </div>
           </article>
         ))}
-      </div>
+      </HorizontalScroller>
     </section>
   );
 }
 
 function Narratives() {
   return (
-    <section className="mx-auto max-w-7xl px-6 pb-20">
+    <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
       <div className="mb-8 flex items-end justify-between gap-6">
         <div>
-          <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">Weekly market narratives</p>
-          <h2 className="mt-2 text-3xl font-semibold tracking-tight">What changed this week</h2>
+          <p className="text-xs uppercase tracking-wider text-muted-foreground">
+            Weekly market narratives
+          </p>
+
+          <h2 className="mt-2 text-3xl font-semibold tracking-tight">
+            What changed this week
+          </h2>
+
           <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-            Short editorial notes from the Atlas research desk — the stories behind the data.
+            Short editorial notes from the Atlas research desk — the stories
+            behind the data.
           </p>
         </div>
-        <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-secondary px-2 py-1 text-[11px] text-muted-foreground">
-          <Activity className="size-3" /> Week of Jun 9
+
+        <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-secondary px-3 py-1 text-xs text-muted-foreground">
+          <Activity className="h-3 w-3" />
+          Week of Jun 9
         </span>
       </div>
+
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {weeklyNarratives.map((n) => (
-          <article key={n.title} className="rounded-2xl border border-border bg-card p-5">
-            <span className="inline-flex items-center gap-1 rounded-full bg-secondary px-2 py-0.5 text-[11px] text-muted-foreground">
+          <article
+            key={n.title}
+            className="rounded-2xl border border-border bg-card p-5 transition hover:shadow-sm"
+          >
+            <span className="inline-flex items-center rounded-full bg-secondary px-2.5 py-1 text-[11px] text-muted-foreground">
               {n.tag}
             </span>
-            <h3 className="mt-3 text-[15px] font-semibold leading-snug tracking-tight">{n.title}</h3>
-            <p className="mt-2 text-sm text-foreground/80">{n.body}</p>
-            <a href="#" className="mt-3 inline-flex items-center gap-1 text-[12px] font-medium text-foreground hover:text-primary">
-              Read brief <ChevronRight className="size-3.5" />
-            </a>
+
+            <h3 className="mt-4 text-base font-semibold leading-snug tracking-tight">
+              {n.title}
+            </h3>
+
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              {n.body}
+            </p>
+
+            <div className="mt-5 flex justify-between border-t border-border pt-3 text-xs">
+              <span className="text-muted-foreground">
+                Editorial brief
+              </span>
+
+              <a
+                href="#"
+                className="font-semibold text-primary hover:underline"
+              >
+                Read brief →
+              </a>
+            </div>
           </article>
         ))}
       </div>
@@ -947,6 +1407,153 @@ function Narratives() {
   );
 }
 
+const rows = [
+  {
+    rank: 1,
+    name: "Cursor",
+    cat: "AI Coding",
+    growth: "+412%",
+    note: "Top-ranked dev tool by weekly active developers",
+  },
+  {
+    rank: 2,
+    name: "Perplexity",
+    cat: "AI Search",
+    growth: "+298%",
+    note: "Fastest-growing answer engine across all surfaces",
+  },
+  {
+    rank: 3,
+    name: "ElevenLabs",
+    cat: "AI Voice",
+    growth: "+264%",
+    note: "Voice cloning leader, expanding into dubbing",
+  },
+  {
+    rank: 4,
+    name: "Mistral",
+    cat: "Foundation Models",
+    growth: "+221%",
+    note: "Open-weights leader in Europe",
+  },
+  {
+    rank: 5,
+    name: "Runway",
+    cat: "AI Video",
+    growth: "+198%",
+    note: "Gen-3 driving studio adoption",
+  },
+  {
+    rank: 6,
+    name: "Harvey",
+    cat: "AI Legal",
+    growth: "+176%",
+    note: "Top-of-funnel platform for major law firms",
+  },
+  {
+    rank: 7,
+    name: "Cohere",
+    cat: "AI Infrastructure",
+    growth: "+154%",
+    note: "Enterprise embeddings and retrieval stack",
+  },
+  {
+    rank: 8,
+    name: "Glean",
+    cat: "AI Search",
+    growth: "+142%",
+    note: "Enterprise knowledge work platform",
+  },
+  {
+    rank: 9,
+    name: "Anysphere",
+    cat: "AI Coding",
+    growth: "+138%",
+    note: "Expanding rapidly beyond developer tooling",
+  },
+  {
+    rank: 10,
+    name: "Scale AI",
+    cat: "Data Infrastructure",
+    growth: "+121%",
+    note: "Defense and enterprise data labeling leader",
+  },
+];
+
+function Leaderboard() {
+  return (
+    <section className="mx-auto max-w-7xl px-6 pb-20">
+      <div className="mb-8 flex items-end justify-between gap-6">
+        <div>
+          <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">
+            Research Rankings
+          </p>
+
+          <h2 className="mt-2 text-3xl font-semibold tracking-tight">
+            AI category leaderboard
+          </h2>
+
+          <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
+            Fastest-growing AI companies ranked by hiring momentum,
+            funding activity, product adoption and ecosystem growth.
+          </p>
+        </div>
+
+        <a
+          href="#"
+          className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline"
+        >
+          View full leaderboard
+          <ArrowRight className="size-4" />
+        </a>
+      </div>
+
+      <div className="overflow-hidden rounded-3xl border border-border bg-card shadow-sm">
+        {rows.map((r, i) => (
+          <div
+            key={r.rank}
+            className={`group flex items-center gap-4 px-5 py-4 transition hover:bg-secondary/40 ${
+              i !== rows.length - 1 ? "border-b border-border" : ""
+            }`}
+          >
+            {/* Rank */}
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary-soft text-sm font-bold text-accent-foreground">
+              #{r.rank}
+            </div>
+
+            {/* Company */}
+            <div className="min-w-0 flex-1">
+              <div className="flex flex-wrap items-center gap-2">
+                <h3 className="font-semibold tracking-tight">
+                  {r.name}
+                </h3>
+
+                <span className="rounded-full bg-secondary px-2 py-0.5 text-[11px] text-muted-foreground">
+                  {r.cat}
+                </span>
+              </div>
+
+              <p className="mt-1 text-sm text-muted-foreground">
+                {r.note}
+              </p>
+            </div>
+
+            {/* Growth */}
+            <div className="shrink-0 text-right">
+              <p className="text-[11px] uppercase tracking-wide text-muted-foreground">
+                Growth
+              </p>
+
+              <p className="text-lg font-semibold text-primary">
+                {r.growth}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
 
 function Footer() {
   const cols = [
@@ -1007,9 +1614,9 @@ export default function AtlasHome() {
         <Hero />
         <CategoryGrid />
         <TrendingStartups />
+        <Leaderboard />
         <EcosystemMap />
         <Investors />
-        <Founders />
         <FundingAndMarket />
         <Acquisitions />
         <Emerging />
