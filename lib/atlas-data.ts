@@ -314,3 +314,17 @@ export const weeklyNarratives = [
   { tag: "Talent", title: "Voice AI is the fastest-growing hiring category", body: "ElevenLabs, Cartesia and Sesame collectively grew research headcount 41% YoY — strong signal for voice-infra plays." },
   { tag: "M&A", title: "Hyperscalers return to talent acquisitions", body: "Microsoft, Google and Amazon all closed AI-team deals this quarter — the acquihire wave is back at frontier-lab prices." },
 ];
+
+const reportAgents = "/reports/report-agents.jpg";
+const reportTop100 = "/reports/report-top100.jpg";
+const reportHiring = "/reports/report-hiring.jpg";
+const reportFunding = "/reports/report-funding.jpg";
+const reportLandscape = "/reports/report-landscape.jpg";   
+
+export const reportImages = {
+  agents: reportAgents,
+  top100: reportTop100,
+  hiring: reportHiring,
+  funding: reportFunding,
+  landscape: reportLandscape,
+} as const;
