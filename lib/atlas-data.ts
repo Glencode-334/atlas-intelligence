@@ -328,3 +328,390 @@ export const reportImages = {
   funding: reportFunding,
   landscape: reportLandscape,
 } as const;
+
+type Relationship = {
+  kind: string;
+  text: string;
+  date: string;
+};
+
+type Entity = {
+  name: string;
+  type: string;
+  location: string;
+  funding: string;
+  investors: string[];
+  products: string[];
+  competitors: string[];
+  connections: string[];
+  rank: string;
+  nodeCount: string;
+  relationships: Relationship[];
+};
+
+export const entityData: Record<string, Entity> = {
+  OpenAI: {
+name: "OpenAI",
+type: "Foundation Model Lab",
+location: "San Francisco, California",
+funding: "$17B+",
+investors: ["Microsoft", "Thrive Capital", "Nvidia"],
+products: ["ChatGPT", "GPT-4o", "Sora"],
+competitors: ["Anthropic", "xAI", "Mistral"],
+connections: ["Microsoft", "Cursor", "Perplexity", "Thrive"],
+rank: "#1",
+nodeCount: "24 Connections",
+relationships: [
+{
+kind: "Acquisition",
+text: "Microsoft acquires Inflection AI team.",
+date: "Mar 2024",
+},
+{
+kind: "Investor",
+text: "Thrive leads Cursor's major funding round.",
+date: "2025",
+},
+],
+},
+
+Anthropic: {
+name: "Anthropic",
+type: "AI Research Company",
+location: "San Francisco, California",
+funding: "$14B+",
+investors: ["Amazon", "Google"],
+products: ["Claude", "Claude Code"],
+competitors: ["OpenAI", "Mistral", "xAI"],
+connections: ["Amazon", "Google", "OpenAI"],
+rank: "#2",
+nodeCount: "18 Connections",
+relationships: [
+{
+kind: "Partnership",
+text: "Amazon expands strategic partnership.",
+date: "2025",
+},
+],
+},
+
+Mistral: {
+name: "Mistral",
+type: "Open Source Model Company",
+location: "Paris, France",
+funding: "$1B+",
+investors: ["a16z"],
+products: ["Mistral Large", "Le Chat"],
+competitors: ["OpenAI", "Anthropic"],
+connections: ["Google", "a16z"],
+rank: "#5",
+nodeCount: "14 Connections",
+relationships: [
+{
+kind: "Expansion",
+text: "Growing enterprise adoption in Europe.",
+date: "2025",
+},
+],
+},
+
+"Meta Llama": {
+name: "Meta Llama",
+type: "Open Source Foundation Model",
+location: "Menlo Park, California",
+funding: "Meta-backed",
+investors: [],
+products: ["Llama 3", "Llama 4"],
+competitors: ["OpenAI", "Mistral"],
+connections: ["Meta", "Sierra"],
+rank: "#6",
+nodeCount: "12 Connections",
+relationships: [
+{
+kind: "Open Source",
+text: "Llama models drive ecosystem growth.",
+date: "2025",
+},
+],
+},
+
+Cursor: {
+name: "Cursor",
+type: "AI Coding Platform",
+location: "San Francisco, California",
+funding: "$900M",
+investors: ["Thrive", "a16z"],
+products: ["Cursor IDE"],
+competitors: ["Windsurf", "GitHub Copilot"],
+connections: ["OpenAI", "Thrive", "a16z"],
+rank: "#7",
+nodeCount: "9 Connections",
+relationships: [
+{
+kind: "Funding",
+text: "One of the fastest-growing AI coding companies.",
+date: "2025",
+},
+],
+},
+
+Perplexity: {
+name: "Perplexity",
+type: "AI Search Company",
+location: "San Francisco, California",
+funding: "$1B+",
+investors: ["Nvidia", "Founders Fund"],
+products: ["Perplexity Search"],
+competitors: ["Google", "OpenAI"],
+connections: ["OpenAI", "Nvidia"],
+rank: "#8",
+nodeCount: "10 Connections",
+relationships: [
+{
+kind: "Growth",
+text: "Rapid adoption in AI search.",
+date: "2025",
+},
+],
+},
+
+ElevenLabs: {
+name: "ElevenLabs",
+type: "AI Voice Platform",
+location: "London, UK",
+funding: "$180M+",
+investors: ["a16z", "Sequoia"],
+products: ["Voice Studio", "Voice API"],
+competitors: ["PlayHT"],
+connections: ["a16z", "Sequoia"],
+rank: "#9",
+nodeCount: "8 Connections",
+relationships: [
+{
+kind: "Voice AI",
+text: "Leading synthetic voice startup.",
+date: "2025",
+},
+],
+},
+
+Runway: {
+name: "Runway",
+type: "AI Video Platform",
+location: "New York, USA",
+funding: "$500M+",
+investors: ["Google", "Nvidia"],
+products: ["Runway Gen-4"],
+competitors: ["Pika", "Luma"],
+connections: ["Google", "Nvidia"],
+rank: "#10",
+nodeCount: "8 Connections",
+relationships: [
+{
+kind: "Video AI",
+text: "Expanding enterprise video generation.",
+date: "2025",
+},
+],
+},
+
+Harvey: {
+name: "Harvey",
+type: "Legal AI Startup",
+location: "San Francisco, California",
+funding: "$500M+",
+investors: ["Sequoia"],
+products: ["Harvey Legal AI"],
+competitors: ["Casetext"],
+connections: ["Sequoia"],
+rank: "#12",
+nodeCount: "6 Connections",
+relationships: [
+{
+kind: "Legal AI",
+text: "Strong adoption among law firms.",
+date: "2025",
+},
+],
+},
+
+Sierra: {
+name: "Sierra",
+type: "Conversational AI Startup",
+location: "San Francisco, California",
+funding: "$285M+",
+investors: ["Founders Fund"],
+products: ["Sierra Platform"],
+competitors: ["Ada", "Forethought"],
+connections: ["Meta Llama", "Founders Fund"],
+rank: "#11",
+nodeCount: "7 Connections",
+relationships: [
+{
+kind: "Customer AI",
+text: "Focused on enterprise customer experiences.",
+date: "2025",
+},
+],
+},
+
+Microsoft: {
+name: "Microsoft",
+type: "Enterprise Technology Company",
+location: "Redmond, Washington",
+funding: "Public Company",
+investors: [],
+products: ["Azure AI", "Copilot"],
+competitors: ["Google", "Amazon"],
+connections: ["OpenAI"],
+rank: "#1 Enterprise",
+nodeCount: "30 Connections",
+relationships: [
+{
+kind: "Strategic Investment",
+text: "Major backer of OpenAI.",
+date: "2025",
+},
+],
+},
+
+Amazon: {
+name: "Amazon",
+type: "Cloud & Enterprise Technology",
+location: "Seattle, Washington",
+funding: "Public Company",
+investors: [],
+products: ["AWS Bedrock"],
+competitors: ["Microsoft", "Google"],
+connections: ["Anthropic"],
+rank: "#2 Enterprise",
+nodeCount: "20 Connections",
+relationships: [
+{
+kind: "Partnership",
+text: "Strategic partnership with Anthropic.",
+date: "2025",
+},
+],
+},
+
+Google: {
+name: "Google",
+type: "AI & Search Company",
+location: "Mountain View, California",
+funding: "Public Company",
+investors: [],
+products: ["Gemini", "Vertex AI"],
+competitors: ["OpenAI", "Microsoft"],
+connections: ["Anthropic", "Mistral", "Runway"],
+rank: "#3 Enterprise",
+nodeCount: "28 Connections",
+relationships: [
+{
+kind: "AI Expansion",
+text: "Growing Gemini ecosystem.",
+date: "2025",
+},
+],
+},
+
+Nvidia: {
+name: "Nvidia",
+type: "AI Infrastructure",
+location: "Santa Clara, California",
+funding: "Public Company",
+investors: [],
+products: ["H100", "Blackwell", "CUDA"],
+competitors: ["AMD", "Intel"],
+connections: ["Perplexity", "Runway", "OpenAI"],
+rank: "#4 Enterprise",
+nodeCount: "20 Connections",
+relationships: [
+{
+kind: "Infrastructure",
+text: "Provides GPUs powering AI ecosystems.",
+date: "2025",
+},
+],
+},
+
+Sequoia: {
+name: "Sequoia",
+type: "Venture Capital Firm",
+location: "Menlo Park, California",
+funding: "$85B AUM",
+investors: [],
+products: ["Investment Portfolio"],
+competitors: ["a16z", "Accel"],
+connections: ["Harvey", "ElevenLabs"],
+rank: "#1 Investor",
+nodeCount: "40 Connections",
+relationships: [
+{
+kind: "Investor",
+text: "Leading AI startup investor.",
+date: "2025",
+},
+],
+},
+
+a16z: {
+name: "Andreessen Horowitz",
+type: "Venture Capital Firm",
+location: "Menlo Park, California",
+funding: "$45B AUM",
+investors: [],
+products: ["AI Fund"],
+competitors: ["Sequoia"],
+connections: ["Cursor", "ElevenLabs", "Mistral"],
+rank: "#2 Investor",
+nodeCount: "35 Connections",
+relationships: [
+{
+kind: "Investor",
+text: "Active across AI infrastructure and applications.",
+date: "2025",
+},
+],
+},
+
+Thrive: {
+name: "Thrive Capital",
+type: "Venture Capital Firm",
+location: "New York, USA",
+funding: "$20B+ AUM",
+investors: [],
+products: ["Growth Investments"],
+competitors: ["Sequoia"],
+connections: ["OpenAI", "Cursor"],
+rank: "#3 Investor",
+nodeCount: "22 Connections",
+relationships: [
+{
+kind: "Investor",
+text: "Major investor in OpenAI and Cursor.",
+date: "2025",
+},
+],
+},
+
+"Founders Fund": {
+name: "Founders Fund",
+type: "Venture Capital Firm",
+location: "San Francisco, California",
+funding: "$12B+ AUM",
+investors: [],
+products: ["Venture Investments"],
+competitors: ["Thrive"],
+connections: ["Perplexity", "Sierra"],
+rank: "#4 Investor",
+nodeCount: "18 Connections",
+relationships: [
+{
+kind: "Investor",
+text: "Backs frontier AI companies.",
+date: "2025",
+},
+],
+},
+};

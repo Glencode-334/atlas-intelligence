@@ -1,12 +1,20 @@
-export function BigGraph() {
+interface BigGraphProps {
+  selectedNode: string;
+  setSelectedNode: (id: string) => void;
+}
+
+export function BigGraph({
+  selectedNode,
+  setSelectedNode,
+}: BigGraphProps) {
   // 4 typed clusters around a foundation-model core. Positions in a 200x120 viewBox
   // so labels have room to breathe.
   type N = { id: string; x: number; y: number; r: number; t: "model" | "startup" | "investor" | "enterprise"; bold?: boolean };
   const nodes: N[] = [
     // Core models
-    { id: "OpenAI", x: 100, y: 60, r: 5, t: "model", bold: true },
-    { id: "Anthropic", x: 64, y: 36, r: 3.6, t: "model" },
-    { id: "Mistral", x: 138, y: 36, r: 3.2, t: "model" },
+    { id: "OpenAI", x: 100, y: 60, r: 8, t: "model", bold: true },
+    { id: "Anthropic", x: 64, y: 36, r: 5, t: "model" },
+    { id: "Mistral", x: 138, y: 36, r: 4.5, t: "model" },
     { id: "Meta Llama", x: 158, y: 70, r: 2.8, t: "model" },
     // Startups
     { id: "Cursor", x: 78, y: 92, r: 2.6, t: "startup" },
@@ -21,10 +29,10 @@ export function BigGraph() {
     { id: "Thrive", x: 96, y: 108, r: 2, t: "investor" },
     { id: "Founders Fund", x: 134, y: 108, r: 2, t: "investor" },
     // Enterprises / hyperscalers
-    { id: "Microsoft", x: 50, y: 14, r: 2.8, t: "enterprise" },
+    { id: "Microsoft", x: 50, y: 14, r: 4, t: "enterprise" },
     { id: "Amazon", x: 100, y: 8, r: 2.4, t: "enterprise" },
-    { id: "Google", x: 150, y: 14, r: 2.6, t: "enterprise" },
-    { id: "Nvidia", x: 184, y: 28, r: 2.6, t: "enterprise" },
+    { id: "Google", x: 150, y: 14, r: 4, t: "enterprise" },
+    { id: "Nvidia", x: 184, y: 28, r: 4, t: "enterprise" },
   ];
   const colors: Record<N["t"], string> = {
     model: "oklch(0.62 0.16 150)",
@@ -72,8 +80,41 @@ export function BigGraph() {
       {nodes.map((n) => (
         <g key={n.id}>
           <circle cx={n.x} cy={n.y} r={n.r + 1.2} fill={colors[n.t]} opacity="0.18" />
-          <circle cx={n.x} cy={n.y} r={n.r} fill={colors[n.t]} />
-          {n.bold && <circle cx={n.x} cy={n.y} r={n.r + 2.4} fill="none" stroke={colors[n.t]} strokeWidth="0.4" opacity="0.6" />}
+          <circle
+            cx={n.x}
+            cy={n.y}
+            r={n.r}
+            fill={colors[n.t]}
+            onClick={() => setSelectedNode(n.id)}
+            style={{
+              cursor: "pointer",
+            }}
+          />
+
+          {selectedNode === n.id && (
+            <>
+              <circle
+                cx={n.x}
+                cy={n.y}
+                r={n.r + 3}
+                fill="none"
+                stroke={colors[n.t]}
+                strokeWidth="0.8"
+                opacity="0.8"
+              />
+
+              <circle
+                cx={n.x}
+                cy={n.y}
+                r={n.r + 6}
+                fill="none"
+                stroke={colors[n.t]}
+                strokeWidth="0.4"
+                opacity="0.3"
+              />
+            </>
+          )}
+
           <text
             x={n.x}
             y={n.y + n.r + 3.2}

@@ -1,29 +1,17 @@
+"use client";
+import { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { BigGraph } from "@/components/charts/BigGraph";
+import {entityData} from "@/lib/atlas-data";
 
 export function EcosystemMap() {
-  const focus = {
-    name: "OpenAI",
-    type: "Foundation model lab · San Francisco",
-    connections: [
-      "Microsoft",
-      "Cursor",
-      "Thrive",
-      "Perplexity",
-    ],
-    relationships: [
-      {
-        kind: "Acquisition",
-        text: "Microsoft acquires Inflection AI team.",
-        date: "Mar 2024",
-      },
-      {
-        kind: "Investor",
-        text: "Thrive leads Cursor's $900M Series C.",
-        date: "Jun 6",
-      },
-    ],
-  };
+  const [selectedNode, setSelectedNode] =
+  useState("OpenAI");
+
+  const focus =
+  entityData[
+    selectedNode as keyof typeof entityData
+  ] || entityData.OpenAI;
 
   const filters = [
     "All",
@@ -59,6 +47,49 @@ export function EcosystemMap() {
         </a>
       </div>
 
+      <div className="mb-5 grid gap-3 md:grid-cols-4">
+        <div className="rounded-2xl border border-border bg-card p-4">
+          <p className="text-xs text-muted-foreground">
+            Startups
+          </p>
+
+          <p className="mt-1 text-2xl font-semibold">
+            26.4K
+          </p>
+        </div>
+
+        <div className="rounded-2xl border border-border bg-card p-4">
+          <p className="text-xs text-muted-foreground">
+            Investors
+          </p>
+
+          <p className="mt-1 text-2xl font-semibold">
+            3.8K
+          </p>
+        </div>
+
+        <div className="rounded-2xl border border-border bg-card p-4">
+          <p className="text-xs text-muted-foreground">
+            Relationships
+          </p>
+
+          <p className="mt-1 text-2xl font-semibold">
+            184K
+          </p>
+        </div>
+
+        <div className="rounded-2xl border border-border bg-card p-4">
+          <p className="text-xs text-muted-foreground">
+            Funding Tracked
+          </p>
+
+          <p className="mt-1 text-2xl font-semibold">
+            $500B+
+          </p>
+        </div>
+
+      </div>
+
       <div className="mb-4 flex flex-wrap gap-2">
         {filters.map((f, i) => (
           <button
@@ -82,28 +113,68 @@ export function EcosystemMap() {
             style={{ background: "var(--gradient-network)" }}
           />
 
-          <div className="relative h-full min-h-[280px]">
-            <BigGraph />
+          <div className="relative h-full min-h-[540px]">
+            <BigGraph
+              selectedNode={selectedNode}
+              setSelectedNode={setSelectedNode}
+            />
 
             <div className="absolute left-4 top-4 rounded-full border border-border bg-background/80 px-3 py-1 text-[10px] text-muted-foreground backdrop-blur">
               26k nodes · 184k links
             </div>
 
-            <div className="absolute bottom-4 left-4 rounded-full border border-border bg-background/80 px-3 py-1 text-[10px] text-muted-foreground backdrop-blur">
-              Model · Startup · Investor · Enterprise
+            <div className="absolute bottom-4 left-4 rounded-2xl border border-border bg-background/90 p-3 text-[11px] backdrop-blur">
+
+              <p className="mb-2 font-medium">
+                Graph Legend
+              </p>
+
+              <div className="space-y-2">
+
+                <div className="flex items-center gap-2">
+                  <span className="h-3 w-3 rounded-full bg-[oklch(0.62_0.16_150)]" />
+                  <span>Foundation Models</span>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <span className="h-3 w-3 rounded-full bg-[oklch(0.68_0.21_18)]" />
+                  <span>AI Startups</span>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <span className="h-3 w-3 rounded-full bg-[oklch(0.62_0.14_230)]" />
+                  <span>Investors</span>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <span className="h-3 w-3 rounded-full bg-[oklch(0.55_0.18_300)]" />
+                  <span>Enterprises</span>
+                </div>
+
+              </div>
+
             </div>
           </div>
         </div>
 
         {/* SIDEBAR */}
-        <div className="rounded-3xl border border-border bg-card p-4 shadow-sm">
-          <p className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
-            In Focus
-          </p>
+        <div className="rounded-3xl border border-border bg-card p-5 shadow-sm">
 
-          <div className="mt-3 flex items-center gap-3">
-            <span className="grid size-10 place-items-center rounded-xl bg-primary-soft text-sm font-semibold text-accent-foreground">
-              OA
+        {/* HEADER */}
+
+          <div className="border-b border-border pb-4">
+            <p className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+              Entity Intelligence
+            </p>
+
+        <div className="mt-4 flex items-start justify-between">
+          <div className="flex items-center gap-3">
+            <span className="grid size-12 place-items-center rounded-2xl bg-primary-soft text-sm font-semibold text-accent-foreground">
+              {focus.name
+                .split(" ")
+                .map((n: string) => n[0])
+                .slice(0, 2)
+                .join("")}
             </span>
 
             <div>
@@ -114,58 +185,164 @@ export function EcosystemMap() {
               <p className="text-xs text-muted-foreground">
                 {focus.type}
               </p>
+
+              <p className="text-xs text-muted-foreground">
+                {focus.location}
+              </p>
             </div>
           </div>
+        </div>
 
-          <p className="mt-5 text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
-            Connections
-          </p>
+        <div className="mt-4 flex flex-wrap gap-2">
+          <span className="rounded-full bg-primary-soft px-2.5 py-1 text-[11px] font-medium">
+            {focus.nodeCount}
+          </span>
 
-          <div className="mt-2 flex flex-wrap gap-1.5">
-            {focus.connections.map((c) => (
-              <span
-                key={c}
-                className="rounded-full bg-secondary px-2.5 py-1 text-[11px] text-foreground/80"
-              >
-                {c}
-              </span>
-            ))}
+          <span className="rounded-full bg-secondary px-2.5 py-1 text-[11px]">
+            {focus.rank}
+          </span>
+        </div>
+
           </div>
 
-          <p className="mt-5 text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
-            Recent Signals
+        {/* METRICS */}
+
+          <div className="mt-5 grid grid-cols-2 gap-3">
+            <div className="rounded-xl border border-border p-3">
+              <p className="text-[10px] uppercase text-muted-foreground">
+                Funding
+              </p>
+
+          <p className="mt-1 font-semibold text-primary">
+            {focus.funding}
+          </p>
+        </div>
+
+        <div className="rounded-xl border border-border p-3">
+          <p className="text-[10px] uppercase text-muted-foreground">
+            Network Rank
           </p>
 
-          <div className="mt-2 space-y-2">
-            {focus.relationships.map((r) => (
-              <div
-                key={r.text}
-                className="rounded-xl border border-border bg-secondary/40 p-2.5"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="rounded-full bg-primary-soft px-2 py-0.5 text-[10px] font-medium text-accent-foreground">
-                    {r.kind}
-                  </span>
+          <p className="mt-1 font-semibold">
+            {focus.rank}
+          </p>
+        </div>
 
-                  <span className="text-[10px] text-muted-foreground">
-                    {r.date}
-                  </span>
-                </div>
+          </div>
 
-                <p className="mt-2 text-xs leading-relaxed text-foreground/85">
-                  {r.text}
-                </p>
+        {/* INVESTORS */}
+
+          <div className="mt-5">
+            <p className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+              Investors
+            </p>
+
+        <div className="mt-2 flex flex-wrap gap-1.5">
+          {focus.investors.map((i: string) => (
+            <span
+              key={i}
+              className="rounded-full bg-secondary px-2.5 py-1 text-[11px]"
+            >
+              {i}
+            </span>
+          ))}
+        </div>
+
+          </div>
+
+        {/* PRODUCTS */}
+
+          <div className="mt-5">
+            <p className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+              Products
+            </p>
+
+        <div className="mt-2 flex flex-wrap gap-1.5">
+          {focus.products.map((p: string) => (
+            <span
+              key={p}
+              className="rounded-full bg-primary-soft px-2.5 py-1 text-[11px]"
+            >
+              {p}
+            </span>
+          ))}
+        </div>
+          </div>
+
+        {/* COMPETITORS */}
+
+          <div className="mt-5">
+            <p className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+              Competitors
+            </p>
+        <div className="mt-2 flex flex-wrap gap-1.5">
+          {focus.competitors.map((c: string) => (
+            <span
+              key={c}
+              className="rounded-full border border-border px-2.5 py-1 text-[11px]"
+            >
+              {c}
+            </span>
+          ))}
+        </div>
+
+          </div>
+
+        {/* CONNECTIONS */}
+
+          <div className="mt-5">
+            <p className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+              Network Connections
+            </p>
+
+        <div className="mt-2 flex flex-wrap gap-1.5">
+          {focus.connections.map((c: string) => (
+            <button
+              key={c}
+              onClick={() => {
+                if (entityData[c]) {
+                  setSelectedNode(c);
+                }
+              }}
+              className="rounded-full bg-secondary px-2.5 py-1 text-[11px] hover:bg-primary hover:text-white transition"
+            >
+              {c}
+            </button>
+          ))}
+        </div>
+
+          </div>
+
+        {/* SIGNALS */}
+
+          <div className="mt-5 border-t border-border pt-4">
+            <p className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+              Recent Signals
+            </p>
+
+        <div className="mt-3 space-y-3">
+          {focus.relationships.map((r) => (
+            <div
+              key={r.text}
+              className="rounded-xl border border-border bg-secondary/20 p-3"
+            >
+              <div className="flex items-center justify-between">
+                <span className="rounded-full bg-primary-soft px-2 py-0.5 text-[10px] font-medium">
+                  {r.kind}
+                </span>
+
+                <span className="text-[10px] text-muted-foreground">
+                  {r.date}
+                </span>
               </div>
-            ))}
-          </div>
 
-          <a
-            href="#"
-            className="mt-4 inline-flex items-center gap-1 text-xs font-medium text-primary hover:underline"
-          >
-            View entity profile
-            <ArrowUpRight className="size-3.5" />
-          </a>
+              <p className="mt-2 text-xs leading-relaxed">
+                {r.text}
+              </p>
+            </div>
+          ))}
+        </div>
+          </div>
         </div>
       </div>
     </section>

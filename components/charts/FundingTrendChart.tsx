@@ -1,13 +1,19 @@
 export function FundingTrendChart() {
   return (
-    <div className="flex h-full flex-col rounded-3xl border border-border bg-card p-5">
-      <h3 className="font-semibold">
-        Funding momentum
-      </h3>
+      <div className="flex h-full flex-col rounded-3xl border border-border bg-card p-5">
+            <div className="mb-4">
+        <p className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+          Market Momentum
+        </p>
 
-      <p className="mt-1 text-sm text-muted-foreground">
-        Total funding volume.
-      </p>
+        <h3 className="mt-1 text-lg font-semibold">
+          Funding Velocity
+        </h3>
+
+        <p className="mt-1 text-sm text-muted-foreground">
+          Capital deployment accelerated after major foundation-model and AI coding rounds.
+        </p>
+      </div>
 
       <div className="mt-6 flex min-h-[220px] flex-1 items-end gap-3">
         {[42, 56, 48, 74, 89, 112].map((v, i) => (
