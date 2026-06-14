@@ -122,26 +122,28 @@ export function FundingAndMarket() {
             </span>
           </div>
 
-          <ul className="mt-5 flex-1 overflow-y-auto no-scrollbar space-y-3 pr-2">
+          <ul className="mt-5 flex-1 overflow-y-auto no-scrollbar space-y-4 pr-2">
             {intelligenceBrief.map((b) => (
               <li
-                key={b.text}
-                className="group flex gap-3 rounded-2xl border border-border bg-secondary/20 p-3 transition hover:border-primary/20 hover:bg-secondary/40"
-              >
-                <span className="shrink-0 text-lg font-semibold tracking-tight text-primary tabular-nums">
-                  {b.stat}
-                </span>
+  key={b.text}
+  className="group grid grid-cols-[72px_1fr] gap-4 rounded-2xl border border-border bg-secondary/20 p-4 transition-all hover:border-primary/20 hover:bg-secondary/40"
+>
+  <div className="flex items-center justify-center">
+    <span className="text-xl font-bold tracking-tight text-primary tabular-nums">
+      {b.stat}
+    </span>
+  </div>
 
-                <div className="min-w-0">
-                  <span className="text-[10px] font-medium uppercase tracking-wide text-muted-foreground">
-                    {b.tag}
-                  </span>
+  <div className="min-w-0">
+    <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-muted-foreground">
+      {b.tag}
+    </span>
 
-                  <p className="mt-1 text-[13px] leading-snug text-foreground/85">
-                    {b.text}
-                  </p>
-                </div>
-              </li>
+    <p className="mt-1 text-sm leading-relaxed text-foreground/85">
+      {b.text}
+    </p>
+  </div>
+</li>
             ))}
           </ul>
         </div>

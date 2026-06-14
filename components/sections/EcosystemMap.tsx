@@ -8,6 +8,9 @@ export function EcosystemMap() {
   const [selectedNode, setSelectedNode] =
   useState("OpenAI");
 
+  const [search, setSearch] =
+  useState("");
+
   const focus =
   entityData[
     selectedNode as keyof typeof entityData
@@ -19,6 +22,19 @@ export function EcosystemMap() {
     "Investor → Startup",
     "Startup → Model",
   ];
+
+  const handleSearch = () => {
+  const match = Object.keys(entityData).find(
+    (entity) =>
+      entity.toLowerCase() ===
+      search.toLowerCase().trim()
+  );
+
+  if (match) {
+    setSelectedNode(match);
+    setSearch("");
+  }
+};
 
   return (
     <section className="mx-auto max-w-7xl px-6 pb-14">
@@ -105,6 +121,28 @@ export function EcosystemMap() {
         ))}
       </div>
 
+      <div className="mb-5 flex gap-2">
+  <input
+    type="text"
+    value={search}
+    onChange={(e) => setSearch(e.target.value)}
+    onKeyDown={(e) => {
+      if (e.key === "Enter") {
+        handleSearch();
+      }
+    }}
+    placeholder="Search companies, investors, models..."
+    className="flex-1 rounded-2xl border border-border bg-card px-4 py-2 text-sm outline-none focus:border-primary"
+  />
+
+  <button
+    onClick={handleSearch}
+    className="rounded-2xl bg-primary px-4 py-2 text-sm text-primary-foreground hover:opacity-90"
+  >
+    Search
+  </button>
+</div>
+
       <div className="grid gap-4 lg:grid-cols-[7fr_3fr]">
         {/* GRAPH */}
         <div className="relative overflow-hidden rounded-3xl border border-border bg-card shadow-sm">
@@ -158,7 +196,10 @@ export function EcosystemMap() {
         </div>
 
         {/* SIDEBAR */}
-        <div className="rounded-3xl border border-border bg-card p-5 shadow-sm">
+        <div
+  key={selectedNode}
+  className="rounded-3xl border border-border bg-card p-5 shadow-sm transition-all duration-300"
+>
 
         {/* HEADER */}
 
@@ -239,13 +280,18 @@ export function EcosystemMap() {
 
         <div className="mt-2 flex flex-wrap gap-1.5">
           {focus.investors.map((i: string) => (
-            <span
-              key={i}
-              className="rounded-full bg-secondary px-2.5 py-1 text-[11px]"
-            >
-              {i}
-            </span>
-          ))}
+  <button
+    key={i}
+    onClick={() => {
+      if (entityData[i]) {
+        setSelectedNode(i);
+      }
+    }}
+    className="rounded-full bg-secondary px-2.5 py-1 text-[11px] transition hover:bg-primary hover:text-white"
+  >
+    {i}
+  </button>
+))}
         </div>
 
           </div>
@@ -277,13 +323,18 @@ export function EcosystemMap() {
             </p>
         <div className="mt-2 flex flex-wrap gap-1.5">
           {focus.competitors.map((c: string) => (
-            <span
-              key={c}
-              className="rounded-full border border-border px-2.5 py-1 text-[11px]"
-            >
-              {c}
-            </span>
-          ))}
+  <button
+    key={c}
+    onClick={() => {
+      if (entityData[c]) {
+        setSelectedNode(c);
+      }
+    }}
+    className="rounded-full border border-border px-2.5 py-1 text-[11px] transition hover:bg-primary hover:text-white"
+  >
+    {c}
+  </button>
+))}
         </div>
 
           </div>
