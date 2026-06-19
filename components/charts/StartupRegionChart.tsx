@@ -8,7 +8,7 @@ const regions = [
 
 export function StartupRegionChart() {
   return (
-    <div className="flex h-full flex-col rounded-3xl border border-border bg-card p-5">
+    <div className="flex h-full flex-col rounded-2xl border border-border bg-card p-4">
 
       {/* Header */}
       <div>

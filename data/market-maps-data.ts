@@ -1,4 +1,4 @@
-// Editorial data for Atlas Intelligence — believable AI ecosystem content.
+// Editorial data for GraphOne Intelligence — believable AI ecosystem content.
 
 export type Momentum = "Breakout" | "Heating up" | "Steady" | "Watch";
 
@@ -114,10 +114,10 @@ export const insights = [
 ];
 
 export const reports = [
-  { title: "State of AI Agents 2026", category: "Research · Trending", pages: 92, date: "Jun 2026", author: "Atlas Research Desk", readTime: "18 min read", downloads: "24.1k", image: "agents" as const, tone: "pink" as const, featured: false },
+  { title: "State of AI Agents 2026", category: "Research · Trending", pages: 92, date: "Jun 2026", author: "GraphOne Research Desk", readTime: "18 min read", downloads: "24.1k", image: "agents" as const, tone: "pink" as const, featured: false },
   { title: "Top 100 AI Startups of 2026", category: "Rankings", pages: 64, date: "Q2 2026", author: "Editorial Team", readTime: "12 min read", downloads: "41.6k", image: "top100" as const, tone: "orange" as const, featured: false },
   { title: "AI Hiring Trends — Q2 2026", category: "Talent", pages: 48, date: "Jun 2026", author: "People & Talent Desk", readTime: "9 min read", downloads: "8.3k", image: "hiring" as const, tone: "blue" as const, featured: false },
-  { title: "The AI Funding Report — H1 2026", category: "Flagship", pages: 132, date: "Jul 2026", author: "Atlas Research Desk", readTime: "26 min read", downloads: "62.4k", image: "funding" as const, tone: "pink" as const, featured: true },
+  { title: "The AI Funding Report — H1 2026", category: "Flagship", pages: 132, date: "Jul 2026", author: "GraphOne Research Desk", readTime: "26 min read", downloads: "62.4k", image: "funding" as const, tone: "pink" as const, featured: true },
   { title: "The AI Agent Landscape", category: "Landscape", pages: 56, date: "May 2026", author: "Sector Research", readTime: "11 min read", downloads: "19.7k", image: "landscape" as const, tone: "teal" as const, featured: false },
 ];
 

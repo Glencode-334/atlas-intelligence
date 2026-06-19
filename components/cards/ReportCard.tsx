@@ -1,5 +1,5 @@
 import { BookOpen, ChevronRight, FileText, TrendingUp } from "lucide-react";
-import { reports, reportImages } from "@/lib/atlas-data";
+import { reports, reportImages } from "@/data/market-maps-data";
 import Image from "next/image";
 
 export function ReportCard({
@@ -19,8 +19,8 @@ export function ReportCard({
   const img = reportImages[r.image];
   return (
     <article
-      className={`group relative flex flex-col justify-between overflow-hidden rounded-3xl ${tone.text} ${
-        featured ? "row-span-2 min-h-[480px] p-6" : "min-h-[260px] p-5"
+      className={`group relative flex flex-col justify-between overflow-hidden rounded-2xl ${tone.text} ${
+        featured ? "row-span-2 min-h-[480px] p-4" : "min-h-[260px] p-4"
       }`}
     >
       <Image

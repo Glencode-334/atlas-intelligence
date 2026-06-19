@@ -16,7 +16,7 @@ export function Footer() {
             <span className="grid size-7 place-items-center rounded-full bg-primary text-primary-foreground">
               <Sparkles className="size-3.5" />
             </span>
-            <span className="text-[15px] font-semibold tracking-tight">Atlas Intelligence</span>
+            <span className="text-[15px] font-semibold tracking-tight">GraphOne</span>
           </Link>
           <p className="mt-3 max-w-xs text-sm text-muted-foreground">
             The daily map of the AI economy — for investors, founders, recruiters and operators.
@@ -42,9 +42,9 @@ export function Footer() {
       </div>
       <div className="border-t border-border">
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-2 px-6 py-5 text-xs text-muted-foreground md:flex-row md:items-center">
-          <p>© 2026 Atlas Intelligence — research desk in San Francisco.</p>
+          <p>© 2026 GraphOne — research desk in San Francisco.</p>
           <p className="inline-flex items-center gap-2">
-            <Bell className="size-3" /> Subscribe to the Atlas brief — weekly, free.
+            <Bell className="size-3" /> Subscribe to the GraphOne brief — weekly, free.
           </p>
         </div>
       </div>

@@ -1,12 +1,12 @@
 import { Activity, Bookmark } from "lucide-react";
-import { intelligenceBrief, recentFunding } from "@/lib/atlas-data";
+import { intelligenceBrief, recentFunding } from "@/data/market-maps-data";
 
 export function FundingAndMarket() {
   return (
     <section className="mx-auto max-w-7xl px-6 pb-20">
       <div className="grid items-stretch gap-4 lg:grid-cols-[1.55fr_1fr]">
         {/* RECENT FUNDING */}
-        <div className="flex h-[580px] flex-col rounded-3xl border border-border bg-card p-6">
+        <div className="flex h-[580px] flex-col rounded-2xl border border-border bg-card p-4">
           <div className="flex items-start justify-between">
             <div>
               <p className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
@@ -100,11 +100,11 @@ export function FundingAndMarket() {
         </div>
 
         {/* INTELLIGENCE BRIEF */}
-        <div className="flex h-[580px] flex-col rounded-3xl border border-border bg-card p-6">
+        <div className="flex h-[580px] flex-col rounded-2xl border border-border bg-card p-4">
           <div className="flex items-start justify-between">
             <div>
               <p className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
-                Atlas Intelligence Brief
+                GraphOne Intelligence Brief
               </p>
 
               <h3 className="mt-1 text-xl font-semibold tracking-tight">

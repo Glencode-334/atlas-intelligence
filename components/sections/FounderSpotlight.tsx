@@ -1,5 +1,5 @@
 import { HorizontalScroller } from "@/components/ui/HorizontalScroller";
-import { founders } from "@/lib/atlas-data";
+import { founders } from "@/data/market-maps-data";
 
 export function FounderSpotlight() {
   return (
@@ -31,7 +31,7 @@ export function FounderSpotlight() {
         {founders.map((f) => (
           <article
             key={f.name}
-            className="w-[340px] shrink-0 snap-start rounded-3xl border border-border bg-card p-5 transition hover:shadow-sm"
+            className="w-[340px] shrink-0 snap-start rounded-2xl border border-border bg-card p-4 transition hover:shadow-sm"
           >
             <div className="flex items-start gap-3">
               <span className="grid size-12 place-items-center rounded-2xl bg-primary-soft text-sm font-semibold text-accent-foreground">

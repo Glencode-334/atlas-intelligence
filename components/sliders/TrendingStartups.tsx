@@ -1,7 +1,7 @@
 import { Users } from "lucide-react";
 import { HorizontalScroller } from "@/components/ui/HorizontalScroller";
 import { MomentumBadge } from "@/components/ui/MomentumBadge";
-import { trendingStartups } from "@/lib/atlas-data";
+import { trendingStartups } from "@/data/market-maps-data";
 
 export function TrendingStartups() {
   return (
@@ -9,7 +9,7 @@ export function TrendingStartups() {
         {trendingStartups.map((s) => (
           <article
             key={s.name}
-            className="snap-start shrink-0 w-[320px] rounded-2xl border border-border bg-card p-5 transition hover:shadow-sm"
+            className="snap-start shrink-0 w-[320px] rounded-2xl border border-border bg-card p-4 transition hover:shadow-sm"
           >
             <header className="flex items-start gap-3">
               <span

@@ -1,4 +1,4 @@
-import { reports } from "@/lib/atlas-data";
+import { reports } from "@/data/market-maps-data";
 import { ReportCard } from "@/components/cards/ReportCard";
 
 export function Reports() {
@@ -10,7 +10,7 @@ export function Reports() {
       <div className="mb-8 flex items-end justify-between gap-6">
         <div>
           <p className="text-xs uppercase tracking-wider text-muted-foreground">
-            Atlas Research
+            GraphOne Research
           </p>
 
           <h2 className="mt-2 text-3xl font-semibold tracking-tight">
@@ -18,7 +18,7 @@ export function Reports() {
           </h2>
 
           <p className="mt-2 text-sm text-muted-foreground">
-            In-house intelligence from the Atlas research desk.
+            In-house intelligence from the GraphOne research desk.
           </p>
         </div>
 

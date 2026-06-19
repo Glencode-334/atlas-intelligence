@@ -1,6 +1,6 @@
 import { HorizontalScroller } from "@/components/ui/HorizontalScroller";
 import { MomentumBadge } from "@/components/ui/MomentumBadge";
-import { categories} from "@/lib/atlas-data";
+import { categories} from "@/data/market-maps-data";
 import { Bot, Brain, Server, Code2, Film, Mic, Search, HeartPulse, Cpu,
      ShieldCheck, Scale, LineChart, Microscope, GitBranch, Sparkles, Building2 } from "lucide-react";
 
@@ -18,7 +18,7 @@ export function CategoryCard() {
           return (
             <article
               key={c.name}
-              className="snap-start shrink-0 w-[280px] rounded-2xl border border-border bg-card p-5 transition hover:shadow-sm"
+              className="snap-start shrink-0 w-[280px] rounded-2xl border border-border bg-card p-4 transition hover:shadow-sm"
             >
               <div className="flex items-center justify-between">
                 <span className="grid h-10 w-10 place-items-center rounded-xl bg-primary-soft text-accent-foreground">

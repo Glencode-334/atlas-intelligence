@@ -7,7 +7,7 @@ export function Nav() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-2">
           <span className="grid h-7 w-7 place-items-center rounded-full bg-primary text-primary-foreground text-xs font-bold">A</span>
-          <span className="font-semibold tracking-tight">Atlas Intelligence</span>
+          <span className="font-semibold tracking-tight">GraphOne</span>
         </Link>
         <nav className="hidden md:flex items-center gap-1 text-sm">
           {links.map((l) => (

@@ -9,9 +9,9 @@ export function DiscoverSection() {
   );
 
   return (
-    <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       {/* Header */}
-      <div className="mb-8 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+      <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="text-xs uppercase tracking-wider text-muted-foreground">
             {view === "startups"
@@ -19,24 +19,24 @@ export function DiscoverSection() {
               : "Category discovery"}
           </p>
 
-          <h2 className="mt-2 text-3xl font-semibold tracking-tight">
+          <h2 className="mt-1 text-2xl font-semibold tracking-tight">
             {view === "startups"
               ? "The startups everyone is watching"
               : "Track emerging AI categories"}
           </h2>
 
-          <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
+          <p className="mt-1 max-w-xl text-sm text-muted-foreground">
             {view === "startups"
-              ? "Curated by the Atlas research desk — refreshed every 24 hours."
+              ? "Curated by the GraphOne research desk — refreshed every 24 hours."
               : "Sixteen live sectors of the AI economy, ranked by momentum across funding, hiring and product velocity."}
           </p>
         </div>
 
-        <div className="flex items-center gap-4">
-          <div className="flex rounded-xl border border-border bg-card p-1">
+        <div className="flex items-center gap-3">
+          <div className="flex rounded-lg border border-border bg-card p-1">
             <button
               onClick={() => setView("startups")}
-              className={`rounded-lg px-4 py-2 text-sm font-medium transition ${
+              className={`rounded-lg px-3 py-1.5 text-sm font-medium transition ${
                 view === "startups"
                   ? "bg-primary text-primary-foreground"
                   : "text-muted-foreground"
@@ -47,7 +47,7 @@ export function DiscoverSection() {
 
             <button
               onClick={() => setView("categories")}
-              className={`rounded-lg px-4 py-2 text-sm font-medium transition ${
+              className={`rounded-lg px-3 py-1.5 text-sm font-medium transition ${
                 view === "categories"
                   ? "bg-primary text-primary-foreground"
                   : "text-muted-foreground"

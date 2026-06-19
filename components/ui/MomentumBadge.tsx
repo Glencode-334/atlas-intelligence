@@ -1,5 +1,5 @@
 import { Activity, Eye, Flame, TrendingUp } from "lucide-react";
-import { type Momentum } from "@/lib/atlas-data";
+import { type Momentum } from "@/data/market-maps-data";
 
 export function MomentumBadge({ m }: { m: Momentum }) {
   const styles: Record<Momentum, string> = {

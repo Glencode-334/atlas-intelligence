@@ -1,5 +1,5 @@
 import { HorizontalScroller } from "../ui/HorizontalScroller";
-import { acquisitions } from "@/lib/atlas-data";
+import { acquisitions } from "@/data/market-maps-data";
 
 export function Acquisitions() {
   return (
@@ -7,7 +7,7 @@ export function Acquisitions() {
         {acquisitions.map((a) => (
           <article
             key={`${a.acquirer}-${a.target}`}
-            className="snap-start shrink-0 w-[360px] rounded-2xl border border-border bg-card p-5 transition hover:shadow-sm"
+            className="snap-start shrink-0 w-[360px] rounded-2xl border border-border bg-card p-4 transition hover:shadow-sm"
           >
             <div className="flex items-center justify-between text-[11px] uppercase tracking-wider text-muted-foreground">
               <span>{a.type}</span>

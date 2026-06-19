@@ -11,22 +11,22 @@ export function Hero() {
 
   return (
     <section className="border-b border-border/60">
-      <div className="mx-auto grid max-w-7xl items-end gap-10 px-6 pb-10 pt-14 lg:grid-cols-[1.05fr_1fr]">
+      <div className="mx-auto grid max-w-7xl items-end gap-8 px-6 pb-8 pt-10 lg:grid-cols-[1.05fr_1fr]">
         <div>
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 text-xs text-muted-foreground">
             <span className="size-1.5 rounded-full bg-primary" />
             AI ecosystem intelligence · updated daily
           </div>
-          <h1 className="text-5xl font-semibold leading-[1.05] tracking-tight md:text-6xl">
+          <h1 className="text-4xl font-semibold leading-[1.05] tracking-tight md:text-5xl">
             AI Market Intelligence
             <br />
             <span className="text-primary">for founders and investors</span>
           </h1>
-          <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-muted-foreground">
+          <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">
             Track startups, funding rounds, acquisitions,emerging categories, investor activity and market signals across the global AI ecosystem.
           </p>
 
-          <div className="mt-7 rounded-2xl border border-border bg-card p-2 shadow-[var(--shadow-card)]">
+          <div className="mt-5 rounded-2xl border border-border bg-card p-2 shadow-[var(--shadow-card)]">
             <div className="flex items-center gap-1 border-b border-border px-2 pb-2">
               {tabs.map((t, i) => (
                 <button
@@ -48,7 +48,7 @@ export function Hero() {
                 className="flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
                 placeholder="Search startups, investors, founders, funding rounds, acquisitions, reports, and AI categories…"
               />
-              <button className="rounded-full bg-primary px-5 py-2 text-sm font-medium text-primary-foreground">
+              <button className="rounded-full bg-primary px-4 py-1.5 text-sm font-medium text-primary-foreground">
                 Search
               </button>
             </div>
@@ -62,7 +62,7 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="mt-5 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
+          <div className="mt-4 flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground">
             <span className="uppercase tracking-wide">Trending</span>
             {quick.map((q) => (
               <a key={q} href="#" className="rounded-full border border-border bg-card px-2.5 py-1 transition-colors hover:border-primary/40 hover:text-foreground">
@@ -110,7 +110,7 @@ function NetworkVisual() {
   ];
 
   return (
-    <div className="relative aspect-[5/4] overflow-hidden rounded-3xl border border-border bg-card shadow-[var(--shadow-card)]">
+    <div className="relative aspect-[5/4] max-h-[500px] overflow-hidden rounded-2xl border border-border bg-card shadow-[var(--shadow-card)]">
       <div className="absolute inset-0" style={{ background: "var(--gradient-network)" }} />
       <svg viewBox="0 0 200 150" className="relative h-full w-full" preserveAspectRatio="xMidYMid meet">
         {edges.map(([a, b], i) => {
@@ -144,7 +144,7 @@ function NetworkVisual() {
       </svg>
       <div className="absolute inset-x-5 bottom-5 flex items-center justify-between rounded-xl bg-card/85 px-3 py-2 text-xs text-muted-foreground backdrop-blur">
         <span className="inline-flex items-center gap-1.5"><Network className="size-3.5" /> Live ecosystem map · 26,482 nodes</span>
-        <a href="#" className="inline-flex items-center gap-1 font-medium text-foreground hover:text-primary">
+        <a href="#map" className="inline-flex items-center gap-1 font-medium text-foreground hover:text-primary">
           Explore full graph <ArrowUpRight className="size-3.5" />
         </a>
       </div>

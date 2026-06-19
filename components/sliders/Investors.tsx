@@ -1,6 +1,6 @@
 import { MomentumBadge } from "@/components/ui/MomentumBadge";
 import { HorizontalScroller } from "@/components/ui/HorizontalScroller";
-import { investors } from "@/lib/atlas-data";
+import { investors } from "@/data/market-maps-data";
 
 export function Investors() {
   return (
@@ -8,7 +8,7 @@ export function Investors() {
         {investors.map((inv) => (
           <article
             key={inv.name}
-            className="snap-start shrink-0 w-[360px] rounded-2xl border border-border bg-card p-5 transition hover:shadow-sm"
+            className="snap-start shrink-0 w-[360px] rounded-2xl border border-border bg-card p-4 transition hover:shadow-sm"
           >
             <header className="flex items-start gap-3">
               <span
