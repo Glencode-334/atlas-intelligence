@@ -1,79 +1,94 @@
+import Image from "next/image";
+import globe from "@/assets/globe.png";
 import { Search, Rocket, DollarSign, BadgeCheck } from "lucide-react";
 import { popularSearches, heroStats } from "@/data/funding";
 import { TrendBadge, MiniSpark } from "./shared";
+
 function Globe() {
-  // SVG sphere built from dots inside a circle clip, with curved meridians/parallels.
-  const R = 220;
-  const cx = 220;
-  const cy = 220;
-  const dots: { x: number; y: number; o: number }[] = [];
-  const step = 7;
-  for (let y = cy - R; y <= cy + R; y += step) {
-    for (let x = cx - R; x <= cx + R; x += step) {
-      const dx = x - cx;
-      const dy = y - cy;
-      const d = Math.sqrt(dx * dx + dy * dy);
-      if (d <= R) {
-        // fade dots near the edge for sphere illusion
-        const o = Math.max(0.15, 1 - Math.pow(d / R, 2.2));
-        dots.push({ x, y, o });
-      }
-    }
-  }
   return (
-    <div className="relative w-full max-w-[500px] aspect-square mx-auto" aria-hidden>
-      <svg viewBox="0 0 480 480" className="absolute inset-0 w-full h-full">
-        <defs>
-          <clipPath id="sphere">
-            <circle cx={cx} cy={cy} r={R} />
-          </clipPath>
-        </defs>
-        <g clipPath="url(#sphere)">
-          {dots.map((d, i) => (
-            <circle key={i} cx={d.x} cy={d.y} r={1.1} fill="#ff5a4e" opacity={d.o * 0.85} />
-          ))}
-          {/* latitude arcs */}
-          {[-150, -110, -65, -22, 22, 65, 110, 150].map((oy, i) => (
-            <ellipse
-              key={`lat-${i}`}
-              cx={cx}
-              cy={cy + oy}
-              rx={Math.sqrt(Math.max(0, R * R - oy * oy))}
-              ry={Math.max(4, 12 - Math.abs(oy) / 20)}
-              fill="none"
-              stroke="#ff5a4e"
-              strokeOpacity="0.45"
-              strokeWidth="1"
-            />
-          ))}
-          {/* longitude arcs */}
-          {[30, 70, 115, 160, 195].map((rx, i) => (
-            <ellipse
-              key={`lng-${i}`}
-              cx={cx}
-              cy={cy}
-              rx={rx}
-              ry={R}
-              fill="none"
-              stroke="#ff5a4e"
-              strokeOpacity="0.32"
-              strokeWidth="1"
-            />
-          ))}
-        </g>
-        <circle cx={cx} cy={cy} r={R} fill="none" stroke="#ff5a4e" strokeOpacity="0.18" strokeWidth="1" />
-      </svg>
-      {/* floating decorative icons */}
-      <div className="absolute -top-2 right-4 grid place-items-center w-9 h-9 rounded-xl bg-[#ffe5dd] text-brand">
-        <Rocket className="w-4 h-4" />
+    <div
+      className="relative flex h-full w-full items-center justify-center pointer-events-none"
+      aria-hidden="true"
+    >
+      {/* Globe */}
+      <div className="relative aspect-square w-full max-w-[560px]">
+        <Image
+          src={globe}
+          alt=""
+          fill
+          priority
+          draggable={false}
+          sizes="(min-width: 1536px) 560px,
+                 (min-width: 1280px) 520px,
+                 (min-width: 1024px) 42vw,
+                 100vw"
+          className="select-none object-contain opacity-95"
+        />
       </div>
-      <div className="absolute top-[38%] -left-3 grid place-items-center w-9 h-9 rounded-xl bg-[#ffe5dd] text-brand">
-        <DollarSign className="w-4 h-4" />
+
+      {/* Rocket */}
+      <div
+        className="
+          absolute
+          top-8
+          right-8
+          flex
+          h-10
+          w-10
+          items-center
+          justify-center
+          rounded-2xl
+          border
+          border-[#FCE6DF]
+          bg-white/95
+          shadow-[0_6px_20px_rgba(15,23,42,0.06)]
+        "
+      >
+        <Rocket className="h-4 w-4 text-[#FF5A4E]" strokeWidth={2.2} />
       </div>
-      <div className="absolute bottom-4 -right-2 grid place-items-center w-9 h-9 rounded-xl bg-[#ffe5dd] text-brand">
-        <DollarSign className="w-4 h-4" />
+
+      {/* Dollar */}
+      <div
+        className="
+          absolute
+          left-4
+          top-1/2
+          -translate-y-1/2
+          flex
+          h-10
+          w-10
+          items-center
+          justify-center
+          rounded-2xl
+          border
+          border-[#FCE6DF]
+          bg-white/95
+          shadow-[0_6px_20px_rgba(15,23,42,0.06)]
+        "
+      >
+        <DollarSign className="h-4 w-4 text-[#FF5A4E]" strokeWidth={2.2} />
       </div>
-      <BadgeCheck className="hidden" />
+
+      {/* Badge */}
+      <div
+        className="
+          absolute
+          bottom-8
+          right-10
+          flex
+          h-10
+          w-10
+          items-center
+          justify-center
+          rounded-2xl
+          border
+          border-[#FCE6DF]
+          bg-white/95
+          shadow-[0_6px_20px_rgba(15,23,42,0.06)]
+        "
+      >
+        <BadgeCheck className="h-4 w-4 text-[#FF5A4E]" strokeWidth={2.2} />
+      </div>
     </div>
   );
 }
@@ -87,24 +102,61 @@ function HeroStatCard({
 }: {
   label: string;
   value: string;
-  trend: { direction: "up" | "down"; pct: string; note?: string };
+  trend: {
+    direction: "up" | "down";
+    pct: string;
+    note?: string;
+  };
   chart?: boolean;
   className?: string;
 }) {
   return (
     <div
-      className={`bg-white border border-line rounded-2xl p-3.5 w-[180px] ${className}`}
-      style={{ boxShadow: "0 8px 24px -10px rgba(16,24,40,.12)" }}
+      className={`
+        absolute
+        w-[185px]
+        rounded-[18px]
+        border
+        border-[#ECECEC]
+        bg-white
+        px-5
+        py-4
+        shadow-[0_1px_2px_rgba(16,24,40,0.04),0_8px_24px_rgba(16,24,40,0.06)]
+        ${chart ? "min-h-[146px]" : "min-h-[108px]"}
+        ${className}
+      `}
     >
-      <div className="text-[11px] text-muted-ink">{label}</div>
-      <div className="text-[22px] font-bold text-ink mt-0.5 tracking-tight">{value}</div>
+      <p className="text-[11px] font-medium leading-none text-[#6B7280]">
+        {label}
+      </p>
+
+      <h3
+        className="
+          mt-2
+          text-[26px]
+          font-extrabold
+          leading-none
+          tracking-[-0.03em]
+          text-[#0B0B0F]
+        "
+      >
+        {value}
+      </h3>
+
       {chart && (
-        <div className="mt-1 -mx-1">
-          <MiniSpark data={[10, 14, 12, 18, 16, 22, 26, 24, 30]} color="#ff5a4e" />
+        <div className="mt-2.5">
+          <MiniSpark
+            data={[10, 14, 12, 18, 16, 22, 26, 24, 30]}
+            color="#FF5A4E"
+          />
         </div>
       )}
-      <div className="mt-1">
-        <TrendBadge trend={trend} size="xs" />
+
+      <div className={chart ? "mt-2" : "mt-3"}>
+        <TrendBadge
+          trend={trend}
+          size="xs"
+        />
       </div>
     </div>
   );
@@ -112,74 +164,175 @@ function HeroStatCard({
 
 export function Hero() {
   return (
-    <section className="mx-auto max-w-[1200px] px-6 pt-8 pb-10">
-      <div className="grid lg:grid-cols-[1fr_540px] gap-10 items-center">
-        {/* Left */}
-        <div className="min-w-0">
-          <h1 className="text-[44px] md:text-[52px] leading-[1.05] font-extrabold text-ink tracking-tight">
-            Follow the capital<br />behind the AI economy
-          </h1>
-          <p className="mt-5 text-[15px] text-muted-ink max-w-[480px] leading-relaxed">
-            Track every funding round, acquisition, investor activity and
-            capital trend shaping the future of artificial intelligence.
-          </p>
+    <section
+      aria-labelledby="funding-hero"
+      className="w-full pt-8 pb-10"
+    >
+      <div
+        className="
+          grid
+          items-center
+          gap-10
+          xl:gap-14
+          lg:grid-cols-[minmax(0,0.96fr)_minmax(0,1.04fr)]
+        "
+      >
+        {/* LEFT */}
+        <div className="min-w-0 max-w-[560px]">
+          <header>
+            <h1
+              id="funding-hero"
+              className="
+                font-display
+                font-extrabold
+                leading-[0.95]
+                tracking-[-0.045em]
+                text-[#0B0B0F]
+
+                text-[42px]
+                md:text-[50px]
+                xl:text-[58px]
+              "
+            >
+              Follow the capital
+              <br />
+              behind the AI economy
+            </h1>
+
+            <p
+              className="
+                mt-5
+                max-w-[500px]
+                text-[15px]
+                leading-7
+                text-[#6B7280]
+              "
+            >
+              Track every funding round, acquisition, investor activity,
+              and capital trends shaping the future of artificial
+              intelligence.
+            </p>
+          </header>
 
           {/* Search */}
+
           <form
             role="search"
-            onSubmit={(e) => e.preventDefault()}
-            className="mt-7 relative max-w-[520px]"
+            action="#"
+            className="relative mt-8 w-full max-w-[500px]"
           >
             <input
               type="search"
-              placeholder="Search startups, rounds, investors, sectors…"
-              className="w-full h-12 pl-5 pr-14 rounded-full bg-white border border-line text-[14px] placeholder:text-muted-ink focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/20"
-              aria-label="Search startups, rounds, investors, sectors"
+              placeholder="Search startups, rounds, investors, sectors..."
+              aria-label="Search startups, investors and funding rounds"
+              className="
+                h-[50px]
+                w-full
+                rounded-full
+                border
+                border-[#ECECEC]
+                bg-white
+                pl-6
+                pr-14
+                text-[14px]
+                text-[#0B0B0F]
+                placeholder:text-[#9CA3AF]
+                outline-none
+                transition
+                focus:border-[#FF5A4E]
+                focus:ring-4
+                focus:ring-[#FF5A4E]/10
+              "
             />
+
             <button
               type="submit"
-              aria-label="Submit search"
-              className="absolute right-1.5 top-1.5 grid place-items-center w-9 h-9 rounded-full bg-brand text-white hover:bg-brand-soft transition-colors"
+              aria-label="Search"
+              className="
+                absolute
+                right-[6px]
+                top-[5px]
+                flex
+                h-10
+                w-10
+                items-center
+                justify-center
+                rounded-full
+                bg-[#FF5A4E]
+                text-white
+                transition-colors
+                hover:bg-[#F14E42]
+              "
             >
-              <Search className="w-4 h-4" />
+              <Search className="h-4 w-4" />
             </button>
           </form>
 
-          {/* Popular */}
-          <div className="mt-5 flex items-center gap-2 flex-wrap">
-            <span className="text-[12px] text-muted-ink mr-1">Popular searches:</span>
-            {popularSearches.map((p) => (
+          {/* Popular searches */}
+
+          <div className="mt-5 flex flex-wrap items-center gap-2">
+            <span className="mr-1 text-[12px] text-[#6B7280]">
+              Popular searches:
+            </span>
+
+            {popularSearches.map((item) => (
               <button
-                key={p}
-                className="h-7 px-3 rounded-full border border-line bg-white text-[12px] text-ink hover:border-brand hover:text-brand transition-colors"
+                key={item}
+                className="
+                  rounded-full
+                  border
+                  border-[#ECECEC]
+                  bg-white
+                  px-3
+                  py-[6px]
+                  text-[12px]
+                  text-[#374151]
+                  transition-colors
+                  hover:border-[#FF5A4E]
+                  hover:text-[#FF5A4E]
+                "
               >
-                {p}
+                {item}
               </button>
             ))}
           </div>
         </div>
 
-        {/* Right: globe + floating stat cards */}
-        <div className="relative h-[460px] hidden lg:block">
+        {/* RIGHT */}
+
+        <div
+          className="
+            relative
+            hidden
+            lg:flex
+            h-[460px]
+            w-full
+            items-center
+            justify-center
+          "
+        >
           <Globe />
+
           <HeroStatCard
             label={heroStats.totalFunding.label}
             value={heroStats.totalFunding.value}
             trend={heroStats.totalFunding.trend}
-            className="absolute top-2 left-2"
+            className="top-3 left-0"
           />
+
           <HeroStatCard
             label={heroStats.activeInvestors.label}
             value={heroStats.activeInvestors.value}
             trend={heroStats.activeInvestors.trend}
-            className="absolute top-24 right-0"
+            className="top-28 right-0"
           />
+
           <HeroStatCard
             label={heroStats.fundingRounds.label}
             value={heroStats.fundingRounds.value}
             trend={heroStats.fundingRounds.trend}
             chart
-            className="absolute bottom-6 left-10"
+            className="bottom-6 left-6"
           />
         </div>
       </div>
