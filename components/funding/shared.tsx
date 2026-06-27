@@ -1,7 +1,7 @@
-import { Suspense } from "react";
+"use client";
 import { Area, AreaChart, ResponsiveContainer } from "recharts";
 import { ArrowUpRight, ArrowDownRight } from "lucide-react";
-import{ type Trend } from "@/data/funding"
+import{ type Trend } from "@/data/funding";
  
 export function TrendBadge({
   trend,
@@ -50,6 +50,10 @@ export function Sparkline({
   data: number[];
   color: string;
 }) {
+  if (!data.length) {
+    return <div className="w-full h-8" />;
+  }
+
   const chartData = data.map((value, index) => ({
     index,
     value,
@@ -58,16 +62,14 @@ export function Sparkline({
   const gradientId = `gradient-${color.replace("#", "")}`;
 
   return (
-    <div className="h-12 w-full min-w-0">
-      <ResponsiveContainer width="100%" height="100%">
+    <div className="w-full h-8 min-w-[80px]">
+      <ResponsiveContainer
+        width="100%"
+        height={32}
+      >
         <AreaChart
           data={chartData}
-          margin={{
-            top: 0,
-            right: 0,
-            left: 0,
-            bottom: 0,
-          }}
+          margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
         >
           <defs>
             <linearGradient
@@ -77,17 +79,8 @@ export function Sparkline({
               x2="0"
               y2="1"
             >
-              <stop
-                offset="5%"
-                stopColor={color}
-                stopOpacity={0.22}
-              />
-
-              <stop
-                offset="95%"
-                stopColor={color}
-                stopOpacity={0}
-              />
+              <stop offset="5%" stopColor={color} stopOpacity={0.22} />
+              <stop offset="95%" stopColor={color} stopOpacity={0} />
             </linearGradient>
           </defs>
 
@@ -95,18 +88,17 @@ export function Sparkline({
             type="monotone"
             dataKey="value"
             stroke={color}
-            strokeWidth={2.2}
+            strokeWidth={2}
             fill={`url(#${gradientId})`}
-            isAnimationActive={false}
             dot={false}
             activeDot={false}
+            isAnimationActive={false}
           />
         </AreaChart>
       </ResponsiveContainer>
     </div>
   );
 }
-
 export function MiniSpark({
   data,
   color,
@@ -114,16 +106,5 @@ export function MiniSpark({
   data: number[];
   color: string;
 }) {
-  return (
-    <Suspense
-      fallback={
-        <div className="h-12 w-full rounded bg-[#F7F7F7]" />
-      }
-    >
-      <Sparkline
-        data={data}
-        color={color}
-      />
-    </Suspense>
-  );
+  return <Sparkline data={data} color={color} />;
 }

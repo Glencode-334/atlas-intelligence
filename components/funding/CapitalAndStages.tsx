@@ -71,149 +71,211 @@ export function CapitalAndStages() {
   ];
 
   return (
-      <section className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
-        {/* Where capital is flowing */}
+      <section className="mt-5 grid grid-cols-1 gap-4 lg:grid-cols-2">
+  {/* Where capital is flowing */}
+  <div
+    className="
+      rounded-[14px]
+      border
+      border-[#ECECEC]
+      bg-white
+      p-4
+      shadow-[0_1px_2px_rgba(16,24,40,.04),0_1px_3px_rgba(16,24,40,.05)]
+    "
+  >
+    <div className="mb-3 flex items-center justify-between">
+      <h2 className="text-[15px] font-semibold tracking-[-0.02em] text-[#0B0B0F]">
+        Where capital is flowing
+      </h2>
+
+      <a
+        href="#"
+        className="text-[11px] font-medium text-[#FF5A4E] hover:opacity-80"
+      >
+        View all →
+      </a>
+    </div>
+
+    <div className="grid grid-cols-3 gap-2">
+      {capital.map((c) => (
         <div
+          key={c.name}
           className="
-            rounded-[20px]
-            border
-            border-[#ECECEC]
-            bg-white
-            p-6
-            shadow-[0_1px_2px_rgba(16,24,40,.04),0_1px_3px_rgba(16,24,40,.06)]
+            group
+            relative
+            aspect-[1]
+            overflow-hidden
+            rounded-md
+            cursor-pointer
           "
         >
-          <div className="mb-5 flex items-center justify-between">
-            <h2 className="text-[18px] font-semibold tracking-[-0.02em] text-[#0B0B0F]">
-              Where capital is flowing
-            </h2>
+          <Image
+            src={c.img}
+            alt={c.name}
+            width={400}
+            height={400}
+            sizes="(min-width:1280px) 180px,
+                  (min-width:1024px) 16vw,
+                  33vw"
+            className="
+              h-full
+              w-full
+              object-cover
+              transition-transform
+              duration-500
+              group-hover:scale-105
+            "
+          />
 
-            <a
-              href="#"
-              className="text-[13px] font-medium text-[#FF5A4E] hover:opacity-80"
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(180deg,rgba(0,0,0,0.02) 10%,rgba(0,0,0,.72) 100%)",
+            }}
+          />
+
+          <div className="absolute inset-x-0 bottom-0 p-2.5">
+            <p className="text-[11px] font-medium text-white">
+              {c.name}
+            </p>
+
+            <h3
+              className="
+                mt-0.5
+                text-[18px]
+                font-bold
+                leading-none
+                tracking-[-0.03em]
+                text-white
+              "
             >
-              View all →
-            </a>
-          </div>
+              {c.amt}
+            </h3>
 
-          <div className="grid grid-cols-3 gap-2">
-            {capital.map((c) => (
-              <div
-                key={c.name}
-                className="
-                  group
-                  relative
-                  aspect-[0.8]
-                  overflow-hidden
-                  rounded-xl
-                  cursor-pointer
-                "
-              >
-                <Image
-                  src={c.img}
-                  alt={c.name}
-                  width={400}
-                  height={400}
-                  sizes="(min-width:1280px) 220px,
-                        (min-width:1024px) 18vw,
-                        33vw"
-                  className="
-                    h-full
-                    w-full
-                    object-cover
-                    transition-transform
-                    duration-500
-                    group-hover:scale-105
-                  "
-                />
-
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    background:
-                      "linear-gradient(180deg,rgba(0,0,0,0.02) 10%,rgba(0,0,0,.72) 100%)",
-                  }}
-                />
-
-                <div
-                  className="
-                    absolute
-                    inset-x-0
-                    bottom-0
-                    p-4
-                  "
-                >
-                  <p className="text-[13px] font-medium text-white">
-                    {c.name}
-                  </p>
-
-                  <h3
-                    className="
-                      mt-1
-                      text-[26px]
-                      font-bold
-                      leading-none
-                      tracking-[-0.03em]
-                      text-white
-                    "
-                  >
-                    {c.amt}
-                  </h3>
-
-                  <div className="mt-2 flex items-center gap-1 text-[11px] font-medium text-[#FFD4CC]">
-                    <ArrowUpRight size={13} />
-                    {c.delta}
-                  </div>
-                </div>
-              </div>
-            ))}
+            <div className="mt-1 flex items-center gap-1 text-[9px] font-medium text-[#FFD4CC]">
+              <ArrowUpRight size={10} />
+              {c.delta}
+            </div>
           </div>
         </div>
+      ))}
+    </div>
+  </div>
 
-      {/* Funding by stage */}
-      <div className="space-y-6">
-        <div className="rounded-xl border border-[#EFEDE8] bg-white p-5">
-          <div className="mb-5 flex items-center justify-between">
-            <h3 className="text-[14px] font-semibold">Funding by stage</h3>
-            <a href="#" className="text-[12px] text-[#FF5A4E]">View all stages →</a>
+  {/* Funding by stage */}
+<div className="space-y-5">
+  <div className="rounded-[16px] border border-[#EFEDE8] bg-white p-4">
+    <div className="mb-4 flex items-center justify-between">
+      <h3 className="text-[13px] font-semibold">
+        Funding by stage
+      </h3>
+
+      <a
+        href="#"
+        className="text-[11px] text-[#FF5A4E]"
+      >
+        View all stages →
+      </a>
+    </div>
+
+    <div className="grid grid-cols-6 gap-2.5">
+      {stages.map((s) => (
+        <div
+          key={s.name}
+          className="text-center"
+        >
+          <div
+            className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-lg text-[16px]"
+            style={{ background: s.bg }}
+          >
+            {s.icon}
           </div>
-          <div className="grid grid-cols-6 gap-3">
-            {stages.map((s) => (
-              <div key={s.name} className="text-center">
-                <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-xl text-[18px]" style={{ background: s.bg}}>{s.icon}</div>
-                <div className="text-[11px] font-semibold">{s.name}</div>
-                <div className="mt-2 text-[14px] font-bold">{s.rounds}</div>
-                <div className="text-[10px] text-[#8A8A92]">{s.subLabel ?? "Rounds"}</div>
-                <div className="mt-2 text-[12px] font-bold">{s.total}</div>
-                <div className="text-[10px] text-[#8A8A92]">Total raised</div>
-              </div>
-            ))}
+
+          <div className="text-[10px] font-semibold">
+            {s.name}
+          </div>
+
+          <div className="mt-1.5 text-[13px] font-bold">
+            {s.rounds}
+          </div>
+
+          <div className="text-[9px] text-[#8A8A92]">
+            {s.subLabel ?? "Rounds"}
+          </div>
+
+          <div className="mt-1.5 text-[11px] font-bold">
+            {s.total}
+          </div>
+
+          <div className="text-[9px] text-[#8A8A92]">
+            Total raised
           </div>
         </div>
+      ))}
+    </div>
+  </div>
 
-        <div className="rounded-xl border border-[#FFD9D3] bg-[#FFF5F3] p-5">
-          <div className="mb-5 flex items-center justify-between">
-            <h3 className="text-[14px] font-semibold">Capital movement this month</h3>
-            <a href="#" className="text-[12px] text-[#FF5A4E]">View trends →</a>
+  <div className="rounded-[16px] border border-[#FFD9D3] bg-[#FFF5F3] p-4">
+    <div className="mb-4 flex items-center justify-between">
+      <h3 className="text-[13px] font-semibold">
+        Capital movement this month
+      </h3>
+
+      <a
+        href="#"
+        className="text-[11px] text-[#FF5A4E]"
+      >
+        View trends →
+      </a>
+    </div>
+
+    <div className="grid grid-cols-4 gap-2.5">
+      {movement.map((m) => (
+        <div key={m.name}>
+          <div className="text-[10px] text-[#6B6B73]">
+            {m.name}
           </div>
-          <div className="grid grid-cols-4 gap-3">
-            {movement.map((m) => (
-              <div key={m.name}>
-                <div className="text-[11px] text-[#6B6B73]">{m.name}</div>
-                <div className="mt-1 text-[16px] font-bold">{m.amt}</div>
-                <div className="flex">
-                  <div className={`mt-1 flex items-center gap-1 font-semibold text-[12.5px] ${m.up ? "text-[#1E8A4B]" : "text-[#FF5A4E]"}`}>
-                    {m.up ? <ArrowUpRight size={11} /> : <ArrowDownRight size={11} />} {m.d}
-                  </div>
-                  <svg viewBox="0 0 100 24" className="mt-1 h-5 w-full">
-                    <polyline fill="none" stroke={m.up ? "#1E8A4B" : "#FF5A4E"} strokeWidth="1.5" points={m.up ? "0,20 20,14 40,16 60,8 80,10 100,4" : "0,6 20,10 40,8 60,14 80,16 100,20"} />
-                  </svg>
-                </div>
-              </div>
-            ))}
+
+          <div className="mt-1 text-[14px] font-bold">
+            {m.amt}
+          </div>
+
+          <div className="flex">
+            <div
+              className={`mt-1 flex items-center gap-1 text-[11px] font-semibold ${
+                m.up ? "text-[#1E8A4B]" : "text-[#FF5A4E]"
+              }`}
+            >
+              {m.up ? (
+                <ArrowUpRight size={10} />
+              ) : (
+                <ArrowDownRight size={10} />
+              )}
+              {m.d}
+            </div>
+
+            <svg
+              viewBox="0 0 100 24"
+              className="mt-1 h-4 w-full"
+            >
+              <polyline
+                fill="none"
+                stroke={m.up ? "#1E8A4B" : "#FF5A4E"}
+                strokeWidth="1.5"
+                points={
+                  m.up
+                    ? "0,20 20,14 40,16 60,8 80,10 100,4"
+                    : "0,6 20,10 40,8 60,14 80,16 100,20"
+                }
+              />
+            </svg>
           </div>
         </div>
-      </div>
+      ))}
+    </div>
+  </div>
+</div>
     </section>
   );
 }

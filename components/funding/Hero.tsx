@@ -11,16 +11,16 @@ function Globe() {
       aria-hidden="true"
     >
       {/* Globe */}
-      <div className="relative aspect-square w-full max-w-[560px]">
+      <div className="relative aspect-square w-full max-w-[430px]">
         <Image
           src={globe}
           alt=""
           fill
           priority
           draggable={false}
-          sizes="(min-width: 1536px) 560px,
-                 (min-width: 1280px) 520px,
-                 (min-width: 1024px) 42vw,
+          sizes="(min-width: 1536px) 430px,
+                 (min-width: 1280px) 400px,
+                 (min-width: 1024px) 36vw,
                  100vw"
           className="select-none object-contain opacity-95"
         />
@@ -30,64 +30,64 @@ function Globe() {
       <div
         className="
           absolute
-          top-8
-          right-8
+          top-6
+          right-16
           flex
-          h-10
-          w-10
+          h-8
+          w-8
           items-center
           justify-center
-          rounded-2xl
+          rounded-xl
           border
           border-[#FCE6DF]
           bg-white/95
-          shadow-[0_6px_20px_rgba(15,23,42,0.06)]
+          shadow-[0_4px_14px_rgba(15,23,42,0.06)]
         "
       >
-        <Rocket className="h-4 w-4 text-[#FF5A4E]" strokeWidth={2.2} />
+        <Rocket className="h-3.5 w-3.5 text-[#FF5A4E]" strokeWidth={2.2} />
       </div>
 
       {/* Dollar */}
       <div
         className="
           absolute
-          left-4
+          left-8
           top-1/2
           -translate-y-1/2
           flex
-          h-10
-          w-10
+          h-8
+          w-8
           items-center
           justify-center
-          rounded-2xl
+          rounded-xl
           border
           border-[#FCE6DF]
           bg-white/95
-          shadow-[0_6px_20px_rgba(15,23,42,0.06)]
+          shadow-[0_4px_14px_rgba(15,23,42,0.06)]
         "
       >
-        <DollarSign className="h-4 w-4 text-[#FF5A4E]" strokeWidth={2.2} />
+        <DollarSign className="h-3.5 w-3.5 text-[#FF5A4E]" strokeWidth={2.2} />
       </div>
 
       {/* Badge */}
       <div
         className="
           absolute
-          bottom-8
-          right-10
+          bottom-6
+          right-16
           flex
-          h-10
-          w-10
+          h-8
+          w-8
           items-center
           justify-center
-          rounded-2xl
+          rounded-xl
           border
           border-[#FCE6DF]
           bg-white/95
-          shadow-[0_6px_20px_rgba(15,23,42,0.06)]
+          shadow-[0_4px_14px_rgba(15,23,42,0.06)]
         "
       >
-        <BadgeCheck className="h-4 w-4 text-[#FF5A4E]" strokeWidth={2.2} />
+        <BadgeCheck className="h-3.5 w-3.5 text-[#FF5A4E]" strokeWidth={2.2} />
       </div>
     </div>
   );
@@ -114,26 +114,26 @@ function HeroStatCard({
     <div
       className={`
         absolute
-        w-[185px]
-        rounded-[18px]
+        w-[148px]
+        rounded-[14px]
         border
         border-[#ECECEC]
         bg-white
-        px-5
-        py-4
-        shadow-[0_1px_2px_rgba(16,24,40,0.04),0_8px_24px_rgba(16,24,40,0.06)]
-        ${chart ? "min-h-[146px]" : "min-h-[108px]"}
+        px-4
+        py-3
+        shadow-[0_1px_2px_rgba(16,24,40,0.04),0_6px_18px_rgba(16,24,40,0.05)]
+        ${chart ? "min-h-[96px]" : "min-h-[86px]"}
         ${className}
       `}
     >
-      <p className="text-[11px] font-medium leading-none text-[#6B7280]">
+      <p className="text-[10px] font-medium leading-none text-[#6B7280]">
         {label}
       </p>
 
       <h3
         className="
-          mt-2
-          text-[26px]
+          mt-1.5
+          text-[20px]
           font-extrabold
           leading-none
           tracking-[-0.03em]
@@ -144,7 +144,7 @@ function HeroStatCard({
       </h3>
 
       {chart && (
-        <div className="mt-2.5">
+        <div className="mt-2">
           <MiniSpark
             data={[10, 14, 12, 18, 16, 22, 26, 24, 30]}
             color="#FF5A4E"
@@ -152,7 +152,7 @@ function HeroStatCard({
         </div>
       )}
 
-      <div className={chart ? "mt-2" : "mt-3"}>
+      <div className={chart ? "mt-1.5" : "mt-2"}>
         <TrendBadge
           trend={trend}
           size="xs"
@@ -166,19 +166,19 @@ export function Hero() {
   return (
     <section
       aria-labelledby="funding-hero"
-      className="w-full pt-8 pb-10"
+      className="w-full pt-2 pb-8"
     >
       <div
         className="
           grid
           items-center
-          gap-10
-          xl:gap-14
+          gap-8
+          xl:gap-10
           lg:grid-cols-[minmax(0,0.96fr)_minmax(0,1.04fr)]
         "
       >
         {/* LEFT */}
-        <div className="min-w-0 max-w-[560px]">
+        <div className="min-w-0 max-w-[460px]">
           <header>
             <h1
               id="funding-hero"
@@ -189,9 +189,9 @@ export function Hero() {
                 tracking-[-0.045em]
                 text-[#0B0B0F]
 
-                text-[42px]
-                md:text-[50px]
-                xl:text-[58px]
+                text-[34px]
+                md:text-[40px]
+                xl:text-[46px]
               "
             >
               Follow the capital
@@ -201,10 +201,10 @@ export function Hero() {
 
             <p
               className="
-                mt-5
-                max-w-[500px]
-                text-[15px]
-                leading-7
+                mt-4
+                max-w-[430px]
+                text-[14px]
+                leading-6
                 text-[#6B7280]
               "
             >
@@ -219,22 +219,22 @@ export function Hero() {
           <form
             role="search"
             action="#"
-            className="relative mt-8 w-full max-w-[500px]"
+            className="relative mt-6 w-full max-w-[430px]"
           >
             <input
               type="search"
               placeholder="Search startups, rounds, investors, sectors..."
               aria-label="Search startups, investors and funding rounds"
               className="
-                h-[50px]
+                h-[42px]
                 w-full
                 rounded-full
                 border
                 border-[#ECECEC]
                 bg-white
-                pl-6
-                pr-14
-                text-[14px]
+                pl-5
+                pr-12
+                text-[13px]
                 text-[#0B0B0F]
                 placeholder:text-[#9CA3AF]
                 outline-none
@@ -250,11 +250,11 @@ export function Hero() {
               aria-label="Search"
               className="
                 absolute
-                right-[6px]
-                top-[5px]
+                right-[4px]
+                top-[4px]
                 flex
-                h-10
-                w-10
+                h-[34px]
+                w-[34px]
                 items-center
                 justify-center
                 rounded-full
@@ -264,14 +264,14 @@ export function Hero() {
                 hover:bg-[#F14E42]
               "
             >
-              <Search className="h-4 w-4" />
+              <Search className="h-3.5 w-3.5" />
             </button>
           </form>
 
           {/* Popular searches */}
 
-          <div className="mt-5 flex flex-wrap items-center gap-2">
-            <span className="mr-1 text-[12px] text-[#6B7280]">
+          <div className="mt-4 flex flex-wrap items-center gap-2">
+            <span className="mr-1 text-[11px] text-[#6B7280]">
               Popular searches:
             </span>
 
@@ -283,9 +283,9 @@ export function Hero() {
                   border
                   border-[#ECECEC]
                   bg-white
-                  px-3
-                  py-[6px]
-                  text-[12px]
+                  px-2.5
+                  py-1
+                  text-[11px]
                   text-[#374151]
                   transition-colors
                   hover:border-[#FF5A4E]
@@ -305,7 +305,7 @@ export function Hero() {
             relative
             hidden
             lg:flex
-            h-[460px]
+            h-[360px]
             w-full
             items-center
             justify-center
@@ -317,14 +317,14 @@ export function Hero() {
             label={heroStats.totalFunding.label}
             value={heroStats.totalFunding.value}
             trend={heroStats.totalFunding.trend}
-            className="top-3 left-0"
+            className="top-2 left-0"
           />
 
           <HeroStatCard
             label={heroStats.activeInvestors.label}
             value={heroStats.activeInvestors.value}
             trend={heroStats.activeInvestors.trend}
-            className="top-28 right-0"
+            className="top-20 right-0"
           />
 
           <HeroStatCard
@@ -332,7 +332,7 @@ export function Hero() {
             value={heroStats.fundingRounds.value}
             trend={heroStats.fundingRounds.trend}
             chart
-            className="bottom-6 left-6"
+            className="bottom-4 left-4"
           />
         </div>
       </div>

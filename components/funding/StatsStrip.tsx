@@ -1,63 +1,17 @@
-import {
-  Layers,
-  Rocket,
-  Users,
-  TrendingUp,
-  BarChart3,
-  Award,
-  ArrowUpRight,
-} from "lucide-react";
-
-const stats = [
-  {
-    icon: BarChart3,
-    value: "$542B",
-    label: "Funding Tracked",
-    delta: "18%",
-  },
-  {
-    icon: Layers,
-    value: "18,420",
-    label: "Funding Rounds",
-    delta: "15%",
-  },
-  {
-    icon: Rocket,
-    value: "4,800",
-    label: "Funded Startups",
-    delta: "16%",
-  },
-  {
-    icon: Users,
-    value: "7,320",
-    label: "Active Investors",
-    delta: "12%",
-  },
-  {
-    icon: TrendingUp,
-    value: "214",
-    label: "Acquisitions",
-    delta: "20%",
-  },
-  {
-    icon: Award,
-    value: "38",
-    label: "AI Unicorns",
-    delta: "19%",
-  },
-];
+import { ArrowUpRight } from "lucide-react";
+import { stats } from "@/data/funding";
 
 export function StatsStrip() {
   return (
-    <section className="mt-8">
+    <section className="mt-0.5">
       <div
         className="
           overflow-hidden
-          rounded-[20px]
+          rounded-[16px]
           border
           border-[#ECECEC]
           bg-white
-          shadow-[0_1px_2px_rgba(16,24,40,0.04),0_1px_4px_rgba(16,24,40,0.05)]
+          shadow-[0_1px_2px_rgba(16,24,40,0.04),0_1px_3px_rgba(16,24,40,0.05)]
         "
       >
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
@@ -70,9 +24,9 @@ export function StatsStrip() {
                 className={`
                   flex
                   items-center
-                  gap-3
-                  px-5
-                  py-4
+                  gap-2.5
+                  px-4
+                  py-3
 
                   ${
                     index !== stats.length - 1
@@ -90,8 +44,8 @@ export function StatsStrip() {
                 <div
                   className="
                     flex
-                    h-9
-                    w-9
+                    h-8
+                    w-8
                     shrink-0
                     items-center
                     justify-center
@@ -101,7 +55,7 @@ export function StatsStrip() {
                   "
                 >
                   <Icon
-                    size={18}
+                    size={15}
                     strokeWidth={2}
                   />
                 </div>
@@ -109,7 +63,7 @@ export function StatsStrip() {
                 <div className="min-w-0">
                   <div
                     className="
-                      text-[24px]
+                      text-[20px]
                       font-bold
                       leading-none
                       tracking-[-0.03em]
@@ -121,9 +75,9 @@ export function StatsStrip() {
 
                   <div
                     className="
-                      mt-1
+                      mt-0.5
                       whitespace-nowrap
-                      text-[11px]
+                      text-[10px]
                       leading-4
                       text-[#6B7280]
                     "
@@ -133,16 +87,16 @@ export function StatsStrip() {
 
                   <div
                     className="
-                      mt-1.5
+                      mt-1
                       flex
                       items-center
                       gap-1
                       whitespace-nowrap
-                      text-[10px]
+                      text-[9px]
                     "
                   >
                     <ArrowUpRight
-                      size={11}
+                      size={10}
                       strokeWidth={2.5}
                       className="text-[#10B981]"
                     />
