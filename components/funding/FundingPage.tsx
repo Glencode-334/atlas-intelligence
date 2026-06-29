@@ -1,4 +1,4 @@
-import { Breadcrumb } from "@/components/funding/Header";
+import { Breadcrumb } from "@/components/funding/Breadcrumb";
 import { Hero } from "@/components/funding/Hero";
 import { StatsStrip } from "@/components/funding/StatsStrip";
 import { RoundsAndFeed } from "@/components/funding/RoundsAndFeed";
@@ -14,42 +14,20 @@ export function FundingPage() {
       className="min-h-screen bg-white font-sans text-[#0B0B0F] antialiased"
       data-page="funding"
     >
-      <main
-        id="main-content"
-        className="mx-auto max-w-[1200px] px-6 pb-16"
-      >
-        <Breadcrumb />
-        <section aria-labelledby="funding-hero">
-            <Hero />
-        </section>
-
-        <section aria-labelledby="market-snapshot">
-            <StatsStrip />
-        </section>
-
-        <section aria-labelledby="largest-rounds">
-            <RoundsAndFeed />
-        </section>
-
-        <section aria-labelledby="capital-flow">
-            <CapitalAndStages />
-        </section>
-
-        <section aria-labelledby="market-participants">
-            <InvestorsUnicornsAcquisitions />
-        </section>
-
-        <section aria-labelledby="leaderboards">
-            <Leaderboards />
-        </section>
-
-        <section aria-labelledby="categories">
-            <ExploreByCategory />
-        </section>
-
-        <section aria-labelledby="pro">
-            <ProCTA />
-        </section>
+      <main className="mx-auto max-w-7xl px-8 pb-16">
+        <div className="pt-5">
+          <Breadcrumb />
+        </div>
+        <div className="mt-6">
+          <Hero />
+        </div>
+        <StatsStrip />
+        <RoundsAndFeed />
+        <CapitalAndStages />
+        <InvestorsUnicornsAcquisitions />
+        <Leaderboards />
+        <ExploreByCategory />
+        <ProCTA />
       </main>
     </div>
   );

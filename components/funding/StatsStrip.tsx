@@ -3,15 +3,15 @@ import { stats } from "@/data/funding";
 
 export function StatsStrip() {
   return (
-    <section className="mt-0.5">
+    <section className="mt-6">
       <div
         className="
           overflow-hidden
-          rounded-[16px]
+          rounded-[10px]
           border
           border-[#ECECEC]
           bg-white
-          shadow-[0_1px_2px_rgba(16,24,40,0.04),0_1px_3px_rgba(16,24,40,0.05)]
+          shadow-[0_2px_6px_rgba(16,24,40,0.05),0_8px_20px_rgba(16,24,40,0.04)]
         "
       >
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
@@ -24,9 +24,9 @@ export function StatsStrip() {
                 className={`
                   flex
                   items-center
-                  gap-2.5
-                  px-4
-                  py-3
+                  gap-3
+                  px-5
+                  py-4
 
                   ${
                     index !== stats.length - 1
@@ -41,11 +41,12 @@ export function StatsStrip() {
                   }
                 `}
               >
+                {/* Icon */}
                 <div
                   className="
                     flex
-                    h-8
-                    w-8
+                    h-9
+                    w-9
                     shrink-0
                     items-center
                     justify-center
@@ -55,15 +56,16 @@ export function StatsStrip() {
                   "
                 >
                   <Icon
-                    size={15}
+                    size={17}
                     strokeWidth={2}
                   />
                 </div>
 
+                {/* Text */}
                 <div className="min-w-0">
                   <div
                     className="
-                      text-[20px]
+                      text-[22px]
                       font-bold
                       leading-none
                       tracking-[-0.03em]
@@ -75,9 +77,9 @@ export function StatsStrip() {
 
                   <div
                     className="
-                      mt-0.5
+                      mt-1
                       whitespace-nowrap
-                      text-[10px]
+                      text-[11px]
                       leading-4
                       text-[#6B7280]
                     "
@@ -87,16 +89,16 @@ export function StatsStrip() {
 
                   <div
                     className="
-                      mt-1
+                      mt-1.5
                       flex
                       items-center
                       gap-1
                       whitespace-nowrap
-                      text-[9px]
+                      text-[10px]
                     "
                   >
                     <ArrowUpRight
-                      size={10}
+                      size={11}
                       strokeWidth={2.5}
                       className="text-[#10B981]"
                     />

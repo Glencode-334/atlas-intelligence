@@ -64,17 +64,3 @@ export function Header() {
     </header>
   );
 }
-
-export function Breadcrumb() {
-  return (
-    <div className="mx-auto max-w-[1200px] px-6 pt-6">
-      <nav aria-label="Breadcrumb" className="text-[13px] text-muted-ink">
-        <ol className="flex items-center gap-2">
-          <li><Link href="/" className="hover:text-ink">Home</Link></li>
-          <li aria-hidden>›</li>
-          <li className="text-ink">Funding</li>
-        </ol>
-      </nav>
-    </div>
-  );
-}

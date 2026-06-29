@@ -30,8 +30,8 @@ import {
   Users,
   TrendingUp,
   BarChart3,
-  Award,
 } from "lucide-react";
+import { Unicorn } from "@/components/funding/icons";
 
 export const stats = [
   {
@@ -65,7 +65,7 @@ export const stats = [
     delta: "20%",
   },
   {
-    icon: Award,
+    icon: Unicorn,
     value: "38",
     label: "AI Unicorns",
     delta: "19%",

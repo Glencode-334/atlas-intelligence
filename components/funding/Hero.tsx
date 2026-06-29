@@ -11,17 +11,19 @@ function Globe() {
       aria-hidden="true"
     >
       {/* Globe */}
-      <div className="relative aspect-square w-full max-w-[430px]">
+      <div className="relative aspect-square w-full max-w-[460px]">
         <Image
           src={globe}
           alt=""
           fill
           priority
           draggable={false}
-          sizes="(min-width: 1536px) 430px,
-                 (min-width: 1280px) 400px,
-                 (min-width: 1024px) 36vw,
-                 100vw"
+          sizes="
+            (min-width:1536px) 520px,
+            (min-width:1280px) 480px,
+            (min-width:1024px) 42vw,
+            100vw
+          "
           className="select-none object-contain opacity-95"
         />
       </div>
@@ -30,64 +32,73 @@ function Globe() {
       <div
         className="
           absolute
-          top-6
-          right-16
+          top-8
+          right-8
           flex
-          h-8
-          w-8
+          h-10
+          w-10
           items-center
           justify-center
-          rounded-xl
+          rounded-2xl
           border
           border-[#FCE6DF]
-          bg-white/95
-          shadow-[0_4px_14px_rgba(15,23,42,0.06)]
+          bg-white
+          shadow-[0_10px_24px_rgba(15,23,42,0.08)]
         "
       >
-        <Rocket className="h-3.5 w-3.5 text-[#FF5A4E]" strokeWidth={2.2} />
+        <Rocket
+          className="h-4 w-4 text-[#FF5A4E]"
+          strokeWidth={2.2}
+        />
       </div>
 
       {/* Dollar */}
       <div
         className="
           absolute
-          left-8
-          top-1/2
+          left-4
+          top-40
           -translate-y-1/2
           flex
-          h-8
-          w-8
+          h-10
+          w-10
           items-center
           justify-center
-          rounded-xl
+          rounded-2xl
           border
           border-[#FCE6DF]
-          bg-white/95
-          shadow-[0_4px_14px_rgba(15,23,42,0.06)]
+          bg-white
+          shadow-[0_10px_24px_rgba(15,23,42,0.08)]
         "
       >
-        <DollarSign className="h-3.5 w-3.5 text-[#FF5A4E]" strokeWidth={2.2} />
+        <DollarSign
+          className="h-4 w-4 text-[#FF5A4E]"
+          strokeWidth={2.2}
+        />
       </div>
 
       {/* Badge */}
       <div
         className="
           absolute
-          bottom-6
-          right-16
+          bottom-10
+          right-5
           flex
-          h-8
-          w-8
+          h-10
+          w-10
           items-center
           justify-center
-          rounded-xl
+          rounded-2xl
           border
           border-[#FCE6DF]
-          bg-white/95
-          shadow-[0_4px_14px_rgba(15,23,42,0.06)]
+          bg-white
+          shadow-[0_10px_24px_rgba(15,23,42,0.08)]
         "
       >
-        <BadgeCheck className="h-3.5 w-3.5 text-[#FF5A4E]" strokeWidth={2.2} />
+        <BadgeCheck
+          className="h-4 w-4 text-[#FF5A4E]"
+          strokeWidth={2.2}
+        />
       </div>
     </div>
   );
@@ -114,50 +125,48 @@ function HeroStatCard({
     <div
       className={`
         absolute
-        w-[148px]
-        rounded-[14px]
+        ${chart ? "min-w-[165px]" : "min-w-[135px]"}
+        rounded-sm
         border
-        border-[#ECECEC]
+        border-[#F0F1F3]
         bg-white
-        px-4
-        py-3
-        shadow-[0_1px_2px_rgba(16,24,40,0.04),0_6px_18px_rgba(16,24,40,0.05)]
-        ${chart ? "min-h-[96px]" : "min-h-[86px]"}
+        px-3.5
+        py-2.5
+        shadow-[0_6px_20px_rgba(15,23,42,0.08),0_2px_6px_rgba(15,23,42,0.04)]
+        backdrop-blur-sm
+        ${chart ? "min-h-[66px]" : "min-h-[62px]"}
         ${className}
       `}
     >
-      <p className="text-[10px] font-medium leading-none text-[#6B7280]">
+      <p className="text-[9px] font-medium tracking-[0.02em] text-[#6B7280]">
         {label}
       </p>
 
       <h3
         className="
-          mt-1.5
+          mt-1
           text-[20px]
-          font-extrabold
+          font-bold
           leading-none
-          tracking-[-0.03em]
-          text-[#0B0B0F]
+          tracking-[-0.04em]
+          text-[#111827]
         "
       >
         {value}
       </h3>
+      
+      <div className={chart ? "mt-0.5" : "mt-1"}>
+        <TrendBadge trend={trend} size="xs" />
+      </div>
 
       {chart && (
-        <div className="mt-2">
+        <div className="mt-1">
           <MiniSpark
             data={[10, 14, 12, 18, 16, 22, 26, 24, 30]}
             color="#FF5A4E"
           />
         </div>
       )}
-
-      <div className={chart ? "mt-1.5" : "mt-2"}>
-        <TrendBadge
-          trend={trend}
-          size="xs"
-        />
-      </div>
     </div>
   );
 }
@@ -166,7 +175,7 @@ export function Hero() {
   return (
     <section
       aria-labelledby="funding-hero"
-      className="w-full pt-2 pb-8"
+      className="w-full pb-8"
     >
       <div
         className="
@@ -178,17 +187,16 @@ export function Hero() {
         "
       >
         {/* LEFT */}
-        <div className="min-w-0 max-w-[460px]">
+        <div className="min-w-0 w-full">
           <header>
             <h1
               id="funding-hero"
               className="
                 font-display
-                font-extrabold
+                font-semibold
                 leading-[0.95]
                 tracking-[-0.045em]
                 text-[#0B0B0F]
-
                 text-[34px]
                 md:text-[40px]
                 xl:text-[46px]
@@ -201,7 +209,7 @@ export function Hero() {
 
             <p
               className="
-                mt-4
+                mt-6
                 max-w-[430px]
                 text-[14px]
                 leading-6
@@ -270,7 +278,7 @@ export function Hero() {
 
           {/* Popular searches */}
 
-          <div className="mt-4 flex flex-wrap items-center gap-2">
+          <div className="mt-6 flex flex-wrap items-center gap-2">
             <span className="mr-1 text-[11px] text-[#6B7280]">
               Popular searches:
             </span>
@@ -305,7 +313,7 @@ export function Hero() {
             relative
             hidden
             lg:flex
-            h-[360px]
+            h-[350px]
             w-full
             items-center
             justify-center
@@ -317,14 +325,14 @@ export function Hero() {
             label={heroStats.totalFunding.label}
             value={heroStats.totalFunding.value}
             trend={heroStats.totalFunding.trend}
-            className="top-2 left-0"
+            className="top-6 left-6"
           />
 
           <HeroStatCard
             label={heroStats.activeInvestors.label}
             value={heroStats.activeInvestors.value}
             trend={heroStats.activeInvestors.trend}
-            className="top-20 right-0"
+            className="top-30 right-0"
           />
 
           <HeroStatCard
@@ -332,7 +340,7 @@ export function Hero() {
             value={heroStats.fundingRounds.value}
             trend={heroStats.fundingRounds.trend}
             chart
-            className="bottom-4 left-4"
+            className="bottom-8 left-8"
           />
         </div>
       </div>
