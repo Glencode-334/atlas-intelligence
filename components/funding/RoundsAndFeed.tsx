@@ -7,7 +7,7 @@ import { BrandAmazon, BrandIconiq, BrandMicrosoft, BrandNEA, BrandThrive } from 
 import BrandAnthropic from "@/assets/icons/anthropic.webp";
 import BrandCursor from "@/assets/icons/cursor.webp"
 import BrandElevenLabs from "@/assets/icons/elevenlabs.png";
-import BrandOpenAI from "@/assets/icons/openai.webp";
+import BrandOpenAI from "@/assets/icons/openai.png";
 import BrandLovable from "@/assets/icons/lovable.webp";
 import BrandPerplexity from "@/assets/icons/perplexity.png";
 import BrandSynthesia from "@/assets/icons/synthesia.png";

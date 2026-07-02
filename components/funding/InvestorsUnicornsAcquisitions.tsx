@@ -2,7 +2,7 @@ import Image from "next/image";
 import BrandAnthropic from "@/assets/icons/anthropic.webp";
 import BrandCursor from "@/assets/icons/cursor.webp"
 import BrandElevenLabs from "@/assets/icons/elevenlabs.png";
-import BrandOpenAI from "@/assets/icons/openai.webp";
+import BrandOpenAI from "@/assets/icons/openai.png";
 import BrandPerplexity from "@/assets/icons/perplexity.png";
 import BrandSynthesia from "@/assets/icons/synthesia.png";
 import BrandNvidia from "@/assets/icons/nvidia.webp";
